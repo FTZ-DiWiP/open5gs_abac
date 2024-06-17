@@ -365,6 +365,10 @@ upf_sess_t *upf_sess_add_by_message(ogs_pfcp_message_t *message)
         ogs_error("No CP F-SEID");
         return NULL;
     }
+    if (f_seid->ipv4 == 0 && f_seid->ipv6 == 0) {
+        ogs_error("No IPv4 or IPv6");
+        return NULL;
+    }
     f_seid->seid = be64toh(f_seid->seid);
 
     sess = upf_sess_find_by_smf_n4_f_seid(f_seid);
@@ -816,6 +820,7 @@ static void upf_sess_urr_acc_validity_time_setup(upf_sess_t *sess, ogs_pfcp_urr_
     ogs_timer_start(urr_acc->t_validity_time,
             ogs_time_from_sec(urr->quota_validity_time));
 }
+
 static void upf_sess_urr_acc_time_quota_setup(upf_sess_t *sess, ogs_pfcp_urr_t *urr)
 {
     upf_sess_urr_acc_t *urr_acc = &sess->urr_acc[urr->id];
@@ -827,6 +832,7 @@ static void upf_sess_urr_acc_time_quota_setup(upf_sess_t *sess, ogs_pfcp_urr_t *
                                         upf_sess_urr_acc_timers_cb, urr);
     ogs_timer_start(urr_acc->t_time_quota, ogs_time_from_sec(urr->time_quota));
 }
+
 static void upf_sess_urr_acc_time_threshold_setup(upf_sess_t *sess, ogs_pfcp_urr_t *urr)
 {
     upf_sess_urr_acc_t *urr_acc = &sess->urr_acc[urr->id];

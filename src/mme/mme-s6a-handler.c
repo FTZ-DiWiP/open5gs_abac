@@ -118,6 +118,16 @@ uint8_t mme_s6a_handle_ula(
             return OGS_NAS_EMM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED;
         }
     } else if (mme_ue->nas_eps.type == MME_EPS_TYPE_TAU_REQUEST) {
+        if (!SESSION_CONTEXT_IS_AVAILABLE(mme_ue)) {
+            ogs_warn("No PDN Connection : UE[%s]", mme_ue->imsi_bcd);
+            return OGS_NAS_EMM_CAUSE_UE_IDENTITY_CANNOT_BE_DERIVED_BY_THE_NETWORK;
+        }
+
+        if (!ACTIVE_EPS_BEARERS_IS_AVAIABLE(mme_ue)) {
+            ogs_warn("No active EPS bearers : IMSI[%s]", mme_ue->imsi_bcd);
+            return OGS_NAS_EMM_CAUSE_NO_EPS_BEARER_CONTEXT_ACTIVATED;
+        }
+
         r = nas_eps_send_tau_accept(mme_ue,
                 S1AP_ProcedureCode_id_InitialContextSetup);
         ogs_expect(r == OGS_OK);
@@ -345,8 +355,8 @@ static uint8_t mme_ue_session_from_slice_data(mme_ue_t *mme_ue,
                 ogs_free(mme_ue->session[i].name);
             break;
         }
-        memcpy(&mme_ue->session[i].paa, &slice_data->session[i].paa,
-                sizeof(mme_ue->session[i].paa));
+        memcpy(&mme_ue->session[i].ue_ip, &slice_data->session[i].ue_ip,
+                sizeof(mme_ue->session[i].ue_ip));
 
         memcpy(&mme_ue->session[i].qos, &slice_data->session[i].qos,
                 sizeof(mme_ue->session[i].qos));

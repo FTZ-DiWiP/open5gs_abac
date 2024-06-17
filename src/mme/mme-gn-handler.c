@@ -225,7 +225,7 @@ static mme_sess_t *mme_ue_session_from_gtp1_pdp_ctx(mme_ue_t *mme_ue, const ogs_
     mme_sess_t *sess = NULL;
     mme_bearer_t *bearer = NULL;
     const ogs_gtp1_qos_profile_decoded_t *qos_pdec = &gtp1_pdp_ctx->qos_sub;
-    uint8_t pti = gtp1_pdp_ctx->trans_id;
+    uint8_t pti = 1; /* Default PTI : 1 */
     uint8_t qci = 0;
     ogs_session_t *ogs_sess;
 
@@ -238,11 +238,6 @@ static mme_sess_t *mme_ue_session_from_gtp1_pdp_ctx(mme_ue_t *mme_ue, const ogs_
     }
     ogs_sess->smf_ip = gtp1_pdp_ctx->ggsn_address_c;
     ogs_sess->context_identifier = gtp1_pdp_ctx->pdp_ctx_id;
-    ogs_sess->session_type = gtp1_pdp_ctx->pdp_type_num[0];
-    ogs_sess->ue_ip = gtp1_pdp_ctx->pdp_address[0];
-    /* TODO: sess->paa with gtp1_pdp_ctx->pdp_address[0],
-     using/implementing ogs_gtp2_ip_to_paa ? */
-    ogs_ip_to_paa(&ogs_sess->ue_ip, &ogs_sess->paa);
 
     /* 3GPP TS 23.060 section 9.2.1A: "The QoS profiles of the PDP context and EPS bearer are mapped as specified in TS 23.401"
      * 3GPP TS 23.401 Annex E: "Mapping between EPS and Release 99 QoS parameters"
@@ -266,19 +261,21 @@ static mme_sess_t *mme_ue_session_from_gtp1_pdp_ctx(mme_ue_t *mme_ue, const ogs_
     sess->session = ogs_sess;
     sess->pgw_s5c_teid = gtp1_pdp_ctx->ul_teic;
     sess->pgw_s5c_ip = gtp1_pdp_ctx->ggsn_address_c;
-    switch (ogs_sess->session_type) {
+    ogs_ip_to_paa(&gtp1_pdp_ctx->pdp_address[0], &sess->paa);
+    switch (gtp1_pdp_ctx->pdp_type_num[0]) {
     case OGS_PDU_SESSION_TYPE_IPV4:
-        sess->request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV4;
+        sess->ue_request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV4;
         break;
     case OGS_PDU_SESSION_TYPE_IPV6:
-        sess->request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV6;
+        sess->ue_request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV6;
         break;
     case OGS_PDU_SESSION_TYPE_IPV4V6:
-        sess->request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV4V6;
+        sess->ue_request_type.type = OGS_NAS_EPS_PDN_TYPE_IPV4V6;
         break;
     }
-    sess->request_type.value = OGS_NAS_EPS_REQUEST_TYPE_INITIAL;
+    sess->ue_request_type.value = OGS_NAS_EPS_REQUEST_TYPE_INITIAL;
 
+    /* NSAPI = EBI: 3GPP TS 23.401 5.2.1, TS 23.060 14.4A */
     bearer = mme_bearer_find_by_sess_ebi(sess, gtp1_pdp_ctx->nsapi);
     if (!bearer) {
         bearer = mme_default_bearer_in_sess(sess);
@@ -343,7 +340,7 @@ int mme_gn_handle_sgsn_context_response(
 
     if (resp->cause.u8 != OGS_GTP1_CAUSE_REQUEST_ACCEPTED) {
         ogs_error("[Gn] Rx SGSN Context Response cause:%u", resp->cause.u8);
-        rv = nas_eps_send_tau_reject(mme_ue, emm_cause);
+        rv = nas_eps_send_tau_reject(mme_ue->enb_ue, mme_ue, emm_cause);
         return OGS_GTP1_CAUSE_SYSTEM_FAILURE;
     }
 
@@ -433,7 +430,7 @@ int mme_gn_handle_sgsn_context_response(
 nack_and_reject:
     rv = mme_gtp1_send_sgsn_context_ack(mme_ue, gtp1_cause, xact);
     ogs_info("[%s] TAU Reject [OGS_NAS_EMM_CAUSE:%d]", mme_ue->imsi_bcd, emm_cause);
-    rv = nas_eps_send_tau_reject(mme_ue, emm_cause);
+    rv = nas_eps_send_tau_reject(mme_ue->enb_ue, mme_ue, emm_cause);
     return OGS_GTP1_CAUSE_SYSTEM_FAILURE;
 }
 

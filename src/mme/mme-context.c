@@ -2894,7 +2894,7 @@ int mme_enb_set_enb_id(mme_enb_t *enb, uint32_t enb_id)
 {
     ogs_assert(enb);
 
-    ogs_hash_set(self.enb_id_hash, &enb_id, sizeof(enb_id), NULL);
+    ogs_hash_set(self.enb_id_hash, &enb->enb_id, sizeof(enb->enb_id), NULL);
 
     enb->enb_id = enb_id;
     ogs_hash_set(self.enb_id_hash, &enb->enb_id, sizeof(enb->enb_id), enb);
@@ -4149,6 +4149,8 @@ mme_bearer_t *mme_bearer_add(mme_sess_t *sess)
     ogs_assert(bearer);
     memset(bearer, 0, sizeof *bearer);
 
+    ogs_list_init(&bearer->update.xact_list);
+
     ogs_pool_alloc(&mme_ue->ebi_pool, &bearer->ebi_node);
     ogs_assert(bearer->ebi_node);
 
@@ -4176,6 +4178,7 @@ mme_bearer_t *mme_bearer_add(mme_sess_t *sess)
 void mme_bearer_remove(mme_bearer_t *bearer)
 {
     mme_event_t e;
+    ogs_gtp_xact_t *xact = NULL, *next_xact = NULL;
 
     ogs_assert(bearer);
     ogs_assert(bearer->mme_ue);
@@ -4194,6 +4197,11 @@ void mme_bearer_remove(mme_bearer_t *bearer)
 
     if (bearer->ebi_node)
         ogs_pool_free(&bearer->mme_ue->ebi_pool, bearer->ebi_node);
+
+    ogs_list_for_each_entry_safe(&bearer->update.xact_list,
+            next_xact, xact, to_update_node) {
+        ogs_list_remove(&bearer->update.xact_list, &xact->to_update_node);
+    }
 
     ogs_pool_free(&mme_bearer_pool, bearer);
 }
@@ -4275,7 +4283,7 @@ mme_bearer_t *mme_bearer_find_or_add_by_message(
         bearer = mme_bearer_find_by_ue_ebi(mme_ue, ebi);
         if (!bearer) {
             ogs_error("No Bearer : EBI[%d]", ebi);
-            r = nas_eps_send_attach_reject(mme_ue,
+            r = nas_eps_send_attach_reject(mme_ue->enb_ue, mme_ue,
                     OGS_NAS_EMM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED,
                     OGS_NAS_ESM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED);
             ogs_expect(r == OGS_OK);
@@ -4287,8 +4295,9 @@ mme_bearer_t *mme_bearer_find_or_add_by_message(
     }
 
     if (pti == OGS_NAS_PROCEDURE_TRANSACTION_IDENTITY_UNASSIGNED) {
-        ogs_error("Both PTI[%d] and EBI[%d] are 0", pti, ebi);
-        r = nas_eps_send_attach_reject(mme_ue,
+        ogs_error("ESM message type: %d, Both PTI[%d] and EBI[%d] are 0",
+                message->esm.h.message_type, pti, ebi);
+        r = nas_eps_send_attach_reject(mme_ue->enb_ue, mme_ue,
                 OGS_NAS_EMM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED,
                 OGS_NAS_ESM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED);
         ogs_expect(r == OGS_OK);
@@ -4307,7 +4316,7 @@ mme_bearer_t *mme_bearer_find_or_add_by_message(
         if (!bearer) {
             ogs_error("No Bearer : Linked-EBI[%d]",
                     linked_eps_bearer_identity->eps_bearer_identity);
-            r = nas_eps_send_attach_reject(mme_ue,
+            r = nas_eps_send_attach_reject(mme_ue->enb_ue, mme_ue,
                     OGS_NAS_EMM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED,
                     OGS_NAS_ESM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED);
             ogs_expect(r == OGS_OK);
@@ -4373,6 +4382,9 @@ mme_bearer_t *mme_bearer_find_or_add_by_message(
             sess = mme_sess_find_by_apn(mme_ue,
                     pdn_connectivity_request->access_point_name.apn);
             if (sess && create_action != OGS_GTP_CREATE_IN_ATTACH_REQUEST) {
+
+                sess->pti = pti;
+
                 r = nas_eps_send_pdn_connectivity_reject(
                         sess,
                         OGS_NAS_ESM_CAUSE_MULTIPLE_PDN_CONNECTIONS_FOR_A_GIVEN_APN_NOT_ALLOWED,
@@ -4426,7 +4438,7 @@ mme_bearer_t *mme_bearer_find_or_add_by_message(
         if (!sess) {
             ogs_error("No Session : ESM message type[%d], PTI[%d]",
                     message->esm.h.message_type, pti);
-            r = nas_eps_send_attach_reject(mme_ue,
+            r = nas_eps_send_attach_reject(mme_ue->enb_ue, mme_ue,
                     OGS_NAS_EMM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED,
                     OGS_NAS_ESM_CAUSE_PROTOCOL_ERROR_UNSPECIFIED);
             ogs_expect(r == OGS_OK);

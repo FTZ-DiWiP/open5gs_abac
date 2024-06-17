@@ -203,6 +203,12 @@ void sgwc_s11_handle_create_session_request(
     if (req->access_point_name.presence == 0) {
         ogs_error("No APN");
         cause_value = OGS_GTP2_CAUSE_MANDATORY_IE_MISSING;
+    } else {
+        if (ogs_fqdn_parse(apn, req->access_point_name.data,
+            ogs_min(req->access_point_name.len, OGS_MAX_APN_LEN)) <= 0) {
+            ogs_error("Invalid APN");
+            cause_value = OGS_GTP2_CAUSE_MANDATORY_IE_INCORRECT;
+        }
     }
     if (req->sender_f_teid_for_control_plane.presence == 0) {
         ogs_error("No Sender F-TEID");
@@ -221,9 +227,6 @@ void sgwc_s11_handle_create_session_request(
     }
 
     /* Add Session */
-    ogs_assert(0 < ogs_fqdn_parse(apn,
-            req->access_point_name.data,
-            ogs_min(req->access_point_name.len, OGS_MAX_APN_LEN)));
     sess = sgwc_sess_find_by_ebi(sgwc_ue,
             req->bearer_contexts_to_be_created[0].eps_bearer_id.u8);
     if (sess) {
@@ -239,21 +242,22 @@ void sgwc_s11_handle_create_session_request(
     /* Set User Location Information */
     if (req->user_location_information.presence == 1) {
         decoded = ogs_gtp2_parse_uli(&uli, &req->user_location_information);
-        ogs_assert(req->user_location_information.len == decoded);
+        if (req->user_location_information.len == decoded) {
+            sgwc_ue->uli_presence = true;
 
-        sgwc_ue->uli_presence = true;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
+            sgwc_ue->e_tai.tac = uli.tai.tac;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
+            sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
 
-        ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
-        sgwc_ue->e_tai.tac = uli.tai.tac;
-        ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
-        sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
-
-        ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
-                sgwc_ue->e_tai.tac);
-        ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
-                sgwc_ue->e_cgi.cell_id);
+            ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
+                    sgwc_ue->e_tai.tac);
+            ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
+                    sgwc_ue->e_cgi.cell_id);
+        } else
+            ogs_error("Invalid User Location Info(ULI)");
     }
 
     /* Select SGW-U based on UE Location Information */
@@ -539,21 +543,22 @@ void sgwc_s11_handle_modify_bearer_request(
 
     if (req->user_location_information.presence == 1) {
         decoded = ogs_gtp2_parse_uli(&uli, &req->user_location_information);
-        ogs_assert(req->user_location_information.len == decoded);
+        if (req->user_location_information.len == decoded) {
+            sgwc_ue->uli_presence = true;
 
-        sgwc_ue->uli_presence = true;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
+            sgwc_ue->e_tai.tac = uli.tai.tac;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
+            sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
 
-        ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
-        sgwc_ue->e_tai.tac = uli.tai.tac;
-        ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
-        sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
-
-        ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
-                sgwc_ue->e_tai.tac);
-        ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
-                sgwc_ue->e_cgi.cell_id);
+            ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
+                    sgwc_ue->e_tai.tac);
+            ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
+                    sgwc_ue->e_cgi.cell_id);
+        } else
+            ogs_error("Invalid User Location Info(ULI)");
     }
 
     ogs_debug("    MME_S11_TEID[%d] SGW_S11_TEID[%d]",
@@ -799,9 +804,23 @@ void sgwc_s11_handle_create_bearer_response(
 
     /* Find the Tunnel by SGW-S1U-TEID */
     ul_tunnel = sgwc_tunnel_find_by_teid(sgwc_ue, be32toh(sgw_s1u_teid->teid));
-    ogs_assert(ul_tunnel);
+    if (!ul_tunnel) {
+        ogs_error("No UL-tunnel [EBI:%d, TEID:0x%x]",
+                bearer->ebi, be32toh(sgw_s1u_teid->teid));
+        ogs_gtp_send_error_message(s5c_xact, sess ? sess->pgw_s5c_teid : 0,
+                OGS_GTP2_CREATE_BEARER_RESPONSE_TYPE,
+                OGS_GTP2_CAUSE_GRE_KEY_NOT_FOUND);
+        return;
+    }
     dl_tunnel = sgwc_dl_tunnel_in_bearer(bearer);
-    ogs_assert(dl_tunnel);
+    if (!dl_tunnel) {
+        ogs_error("No DL-tunnel [EBI:%d, TEID:0x%x]",
+                bearer->ebi, be32toh(sgw_s1u_teid->teid));
+        ogs_gtp_send_error_message(s5c_xact, sess ? sess->pgw_s5c_teid : 0,
+                OGS_GTP2_CREATE_BEARER_RESPONSE_TYPE,
+                OGS_GTP2_CAUSE_CONTEXT_NOT_FOUND);
+        return;
+    }
 
     /* Set EBI */
     bearer->ebi = rsp->bearer_contexts.eps_bearer_id.u8;
@@ -828,21 +847,22 @@ void sgwc_s11_handle_create_bearer_response(
 
     if (rsp->user_location_information.presence == 1) {
         decoded = ogs_gtp2_parse_uli(&uli, &rsp->user_location_information);
-        ogs_assert(rsp->user_location_information.len == decoded);
+        if (rsp->user_location_information.len == decoded) {
+            sgwc_ue->uli_presence = true;
 
-        sgwc_ue->uli_presence = true;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
+            sgwc_ue->e_tai.tac = uli.tai.tac;
+            ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
+            sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
 
-        ogs_nas_to_plmn_id(&sgwc_ue->e_tai.plmn_id, &uli.tai.nas_plmn_id);
-        sgwc_ue->e_tai.tac = uli.tai.tac;
-        ogs_nas_to_plmn_id(&sgwc_ue->e_cgi.plmn_id, &uli.e_cgi.nas_plmn_id);
-        sgwc_ue->e_cgi.cell_id = uli.e_cgi.cell_id;
-
-        ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
-                sgwc_ue->e_tai.tac);
-        ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
-                ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
-                sgwc_ue->e_cgi.cell_id);
+            ogs_debug("    TAI[PLMN_ID:%06x,TAC:%d]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_tai.plmn_id),
+                    sgwc_ue->e_tai.tac);
+            ogs_debug("    E_CGI[PLMN_ID:%06x,CELL_ID:0x%x]",
+                    ogs_plmn_id_hexdump(&sgwc_ue->e_cgi.plmn_id),
+                    sgwc_ue->e_cgi.cell_id);
+        } else
+            ogs_error("Invalid User Location Info(ULI)");
     }
 
     ogs_assert(OGS_OK ==

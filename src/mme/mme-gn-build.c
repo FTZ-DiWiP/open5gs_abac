@@ -140,6 +140,7 @@ static void build_qos_profile_from_session(ogs_gtp1_qos_profile_decoded_t *qos_p
 static int sess_fill_pdp_context_decoded(mme_sess_t *sess, ogs_gtp1_pdp_context_decoded_t *pdpctx_dec)
 {
     mme_bearer_t *bearer = NULL;
+    int rv;
 
     *pdpctx_dec = (ogs_gtp1_pdp_context_decoded_t){
         .ea = OGS_GTP1_PDPCTX_EXT_EUA_NO,
@@ -147,7 +148,7 @@ static int sess_fill_pdp_context_decoded(mme_sess_t *sess, ogs_gtp1_pdp_context_
         .asi = OGS_GTP1_PDPCTX_ACTIVITY_STATUS_IND_NO,
         .order = OGS_GTP1_PDPCTX_REORDERING_REQUIRED_NO,
         /* 3GPP TS 23.401 Annex D3.5.5 2b.:
-         * "The GTP equence numbers received from the old 3G-SGSN are only relevant if
+         * "The GTP sequence numbers received from the old 3G-SGSN are only relevant if
          * delivery order is required for the PDP context (QoS profile)."
          * NOTE 4: "The GTP and PDCP sequence numbers are not relevant" */
         .snd = 0,
@@ -156,16 +157,19 @@ static int sess_fill_pdp_context_decoded(mme_sess_t *sess, ogs_gtp1_pdp_context_
         .receive_npdu_nr = 0,
         .ul_teic = sess->pgw_s5c_teid,
         .pdp_type_org = OGS_PDP_EUA_ORG_IETF,
-        .pdp_type_num = {sess->session->session_type, },
-        .pdp_address = {sess->session->ue_ip, },
+        .pdp_type_num = {sess->paa.session_type, },
         .ggsn_address_c = sess->pgw_s5c_ip,
         .trans_id = sess->pti,
     };
 
     ogs_cpystrn(pdpctx_dec->apn, sess->session->name, sizeof(pdpctx_dec->apn));
 
+    rv = ogs_paa_to_ip(&sess->paa, &pdpctx_dec->pdp_address[0]);
+    if (rv != OGS_OK)
+        return rv;
+
     ogs_list_for_each(&sess->bearer_list, bearer) {
-        pdpctx_dec->nsapi  = bearer->ebi;
+        pdpctx_dec->nsapi = bearer->ebi; /* 3GPP TS 23.401 5.2.1, TS 23.060 14.4 */
         pdpctx_dec->sapi = 3; /* FIXME. Using 3 = default for now. Maybe use 0 = UNASSIGNED ?*/
         build_qos_profile_from_session(&pdpctx_dec->qos_sub, sess, bearer);
         //FIXME: sort out where to get each one:

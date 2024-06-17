@@ -178,6 +178,16 @@ void s1ap_handle_s1_setup_request(mme_enb_t *enb, ogs_s1ap_message_t *message)
                 SupportedTAs_Item->broadcastPLMNs.list.array[j];
             ogs_assert(pLMNidentity);
 
+            if (enb->num_of_supported_ta_list >=
+                    OGS_ARRAY_SIZE(enb->supported_ta_list)) {
+                ogs_error("OVERFLOW ENB->num_of_supported_ta_list "
+                        "[%d:%d:%d]",
+                        enb->num_of_supported_ta_list,
+                        OGS_MAX_NUM_OF_SUPPORTED_TA,
+                        (int)OGS_ARRAY_SIZE(enb->supported_ta_list));
+                break;
+            }
+
             memcpy(&enb->supported_ta_list[enb->num_of_supported_ta_list].tac,
                     tAC->buf, sizeof(uint16_t));
             enb->supported_ta_list[enb->num_of_supported_ta_list].tac =
@@ -309,6 +319,16 @@ void s1ap_handle_enb_configuration_update(
                 pLMNidentity = (S1AP_PLMNidentity_t *)
                     SupportedTAs_Item->broadcastPLMNs.list.array[j];
                 ogs_assert(pLMNidentity);
+
+                if (enb->num_of_supported_ta_list >=
+                        OGS_ARRAY_SIZE(enb->supported_ta_list)) {
+                    ogs_error("OVERFLOW ENB->num_of_supported_ta_list "
+                            "[%d:%d:%d]",
+                            enb->num_of_supported_ta_list,
+                            OGS_MAX_NUM_OF_SUPPORTED_TA,
+                            (int)OGS_ARRAY_SIZE(enb->supported_ta_list));
+                    break;
+                }
 
                 memcpy(&enb->supported_ta_list[
                         enb->num_of_supported_ta_list].tac,
@@ -586,10 +606,8 @@ void s1ap_handle_initial_ue_message(mme_enb_t *enb, ogs_s1ap_message_t *message)
         enb_ue->enb_ue_s1ap_id, enb_ue->mme_ue_s1ap_id,
         enb_ue->saved.tai.tac, enb_ue->saved.e_cgi.cell_id);
 
-    r = s1ap_send_to_nas(enb_ue,
-            S1AP_ProcedureCode_id_initialUEMessage, NAS_PDU);
-    ogs_expect(r == OGS_OK);
-    ogs_assert(r != OGS_ERROR);
+    ogs_expect(OGS_OK == s1ap_send_to_nas(
+                enb_ue, S1AP_ProcedureCode_id_initialUEMessage, NAS_PDU));
 }
 
 void s1ap_handle_uplink_nas_transport(
@@ -777,10 +795,8 @@ void s1ap_handle_uplink_nas_transport(
         ogs_error("No UE Context in UplinkNASTransport");
     }
 
-    r = s1ap_send_to_nas(enb_ue,
-            S1AP_ProcedureCode_id_uplinkNASTransport, NAS_PDU);
-    ogs_expect(r == OGS_OK);
-    ogs_assert(r != OGS_ERROR);
+    ogs_expect(OGS_OK == s1ap_send_to_nas(
+                enb_ue, S1AP_ProcedureCode_id_uplinkNASTransport, NAS_PDU));
 }
 
 void s1ap_handle_ue_capability_info_indication(

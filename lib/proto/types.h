@@ -85,6 +85,8 @@ extern "C" {
 
 #define OGS_MAX_NUM_OF_ALGORITHM        8
 
+#define OGS_MAX_5G_GUTI_LEN             28
+
 #define OGS_MAX_NUM_OF_SERVED_GUMMEI    8   /* maxnoofRATs: 8 */
 #define OGS_MAX_NUM_OF_SERVED_GUAMI     256 /* maxnoofServedGUAMIs: 256 */
 #define OGS_MAX_NUM_OF_SUPPORTED_TA     256 /* maxnoofTACs: 256 */
@@ -118,7 +120,9 @@ extern "C" {
 #define OGS_TIME_TO_BCD(x) \
     (((((x) % 10) << 4) & 0xf0) | (((x) / 10) & 0x0f))
 
+/* 3GPP TS 24.007 Table 11.6: */
 #define OGS_NAS_PROCEDURE_TRANSACTION_IDENTITY_UNASSIGNED 0
+/* 3GPP TS 24.007 Table 11.2.3.1c.1: */
 #define OGS_NAS_PDU_SESSION_IDENTITY_UNASSIGNED 0
 
 #define OGS_ACCESS_TYPE_3GPP 1
@@ -269,10 +273,11 @@ ogs_amf_id_t *ogs_amf_id_build(ogs_amf_id_t *amf_id,
 #define OGS_PROTECTION_SCHEME_PROFILE_B 2
 
 /************************************
- * SUPI/GPSI                       */
+ * SUPI/GPSI/GUTI                   */
 #define OGS_ID_SUPI_TYPE_IMSI "imsi"
 #define OGS_ID_GPSI_TYPE_MSISDN "msisdn"
 #define OGS_ID_SUPI_TYPE_IMEISV "imeisv"
+#define OGS_ID_5G_GUTI_TYPE "5g-guti"
 char *ogs_id_get_type(const char *str);
 char *ogs_id_get_value(const char *str);
 
@@ -374,11 +379,6 @@ ED2(uint8_t spare:4;,
 typedef struct ogs_paa_s {
 ED2(uint8_t spare:5;,
 /* 8.34 PDN Type  */
-#define OGS_PDU_SESSION_TYPE_IS_VALID(x) \
-        ((x) == OGS_PDU_SESSION_TYPE_IPV4 || \
-         (x) == OGS_PDU_SESSION_TYPE_IPV6 || \
-         (x) == OGS_PDU_SESSION_TYPE_IPV4V6) \
-
     uint8_t session_type:3;)
     union {
         /* PDU_SESSION_TYPE_IPV4 */
@@ -603,7 +603,6 @@ typedef struct ogs_session_s {
     ogs_qos_t qos;
     ogs_bitrate_t ambr; /* APN-AMBR */
 
-    ogs_paa_t paa;
     ogs_ip_t ue_ip;
     char **ipv4_framed_routes;
     char **ipv6_framed_routes;

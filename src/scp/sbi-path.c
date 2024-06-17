@@ -225,11 +225,17 @@ static int request_handler(ogs_sbi_request_t *request, void *data)
         } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_SNSSAIS)) {
             if (val)
                 ogs_sbi_discovery_option_parse_snssais(discovery_option, val);
+        } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_GUAMI)) {
+            if (val)
+                ogs_sbi_discovery_option_parse_guami(discovery_option, val);
         } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_DNN)) {
             ogs_sbi_discovery_option_set_dnn(discovery_option, val);
         } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_TAI)) {
             if (val)
                 ogs_sbi_discovery_option_parse_tai(discovery_option, val);
+        } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_GUAMI)) {
+            if (val)
+                ogs_sbi_discovery_option_parse_guami(discovery_option, val);
         } else if (!strcasecmp(key, OGS_SBI_CUSTOM_DISCOVERY_TARGET_PLMN_LIST)) {
             if (val)
                 discovery_option->num_of_target_plmn_list =
@@ -280,9 +286,10 @@ static int request_handler(ogs_sbi_request_t *request, void *data)
                     client = ogs_sbi_client_find_by_service_type(
                                 nf_instance, service_type);
                     if (!client) {
-                        ogs_error("[%s:%s] Cannot find client [%s:%s]",
-                                OpenAPI_nf_type_ToString(nf_instance->nf_type),
+                        ogs_error("[%s] Cannot find client "
+                                "[type:%s target_nf_type:%s service_name:%s]",
                                 nf_instance->id,
+                                OpenAPI_nf_type_ToString(nf_instance->nf_type),
                                 OpenAPI_nf_type_ToString(target_nf_type),
                                 ogs_sbi_service_type_to_name(service_type));
                     }
@@ -628,7 +635,7 @@ static int response_handler(
         ogs_assert(true ==
             ogs_sbi_server_send_error(stream,
                 OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR, NULL,
-                "response_handler() failed", NULL));
+                "response_handler() failed", NULL, NULL));
 
         scp_assoc_remove(assoc);
 
@@ -697,7 +704,7 @@ static int nf_discover_handler(
         ogs_assert(true ==
             ogs_sbi_server_send_error(stream,
                 OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR, NULL,
-                "nf_discover_handler() failed", NULL));
+                "nf_discover_handler() failed", NULL, NULL));
 
         scp_assoc_remove(assoc);
         return OGS_ERROR;
@@ -784,7 +791,8 @@ cleanup:
 
     ogs_assert(true ==
         ogs_sbi_server_send_error(
-            stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST, NULL, strerror, NULL));
+            stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST, NULL, strerror, NULL,
+            NULL));
 
     ogs_free(strerror);
 
@@ -826,7 +834,7 @@ static int sepp_discover_handler(
         ogs_assert(true ==
             ogs_sbi_server_send_error(stream,
                 OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR, NULL,
-                "sepp_discover_handler() failed", NULL));
+                "sepp_discover_handler() failed", NULL, NULL));
 
         scp_assoc_remove(assoc);
         return OGS_ERROR;
@@ -878,7 +886,8 @@ cleanup:
 
     ogs_assert(true ==
         ogs_sbi_server_send_error(
-            stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST, NULL, strerror, NULL));
+            stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST, NULL, strerror, NULL,
+            NULL));
 
     ogs_free(strerror);
 

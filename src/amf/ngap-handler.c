@@ -209,6 +209,16 @@ void ngap_handle_ng_setup_request(amf_gnb_t *gnb, ogs_ngap_message_t *message)
             i++) {
         NGAP_SupportedTAItem_t *SupportedTAItem = NULL;
 
+        if (gnb->num_of_supported_ta_list >=
+                OGS_ARRAY_SIZE(gnb->supported_ta_list)) {
+            ogs_error("OVERFLOW GNB->num_of_supported_ta_list "
+                    "[%d:%d:%d]",
+                    gnb->num_of_supported_ta_list,
+                    OGS_MAX_NUM_OF_SUPPORTED_TA,
+                    (int)OGS_ARRAY_SIZE(gnb->supported_ta_list));
+            break;
+        }
+
         SupportedTAItem = (NGAP_SupportedTAItem_t *)
                 SupportedTAList->list.array[i];
         if (!SupportedTAItem) {
@@ -234,6 +244,17 @@ void ngap_handle_ng_setup_request(amf_gnb_t *gnb, ogs_ngap_message_t *message)
 
             NGAP_BroadcastPLMNItem_t *BroadcastPLMNItem = NULL;
             NGAP_PLMNIdentity_t *pLMNIdentity = NULL;
+
+            if (gnb->supported_ta_list[i].num_of_bplmn_list >=
+                    OGS_ARRAY_SIZE(gnb->supported_ta_list[i].bplmn_list)) {
+                ogs_error("OVERFLOW GNB->supported_ta_list.num_of_bplmn_list "
+                        "[%d:%d:%d]",
+                        gnb->supported_ta_list[i].num_of_bplmn_list,
+                        OGS_MAX_NUM_OF_BPLMN,
+                        (int)OGS_ARRAY_SIZE(
+                            gnb->supported_ta_list[i].bplmn_list));
+                break;
+            }
 
             BroadcastPLMNItem = (NGAP_BroadcastPLMNItem_t *)
                     SupportedTAItem->broadcastPLMNList.list.array[j];
@@ -267,6 +288,19 @@ void ngap_handle_ng_setup_request(amf_gnb_t *gnb, ogs_ngap_message_t *message)
                             k++) {
                 NGAP_SliceSupportItem_t *SliceSupportItem = NULL;
                 NGAP_S_NSSAI_t *s_NSSAI = NULL;
+
+                if (gnb->supported_ta_list[i].bplmn_list[j].num_of_s_nssai >=
+                        OGS_ARRAY_SIZE(
+                            gnb->supported_ta_list[i].bplmn_list[j].s_nssai)) {
+                    ogs_error("OVERFLOW GNB->supported_ta_list."
+                            "bplmn_list.num_of_s_nssai [%d:%d:%d]",
+                            gnb->supported_ta_list[i].bplmn_list[j].
+                                num_of_s_nssai,
+                            OGS_MAX_NUM_OF_SLICE_SUPPORT,
+                            (int)OGS_ARRAY_SIZE(gnb->
+                                supported_ta_list[i].bplmn_list[j].s_nssai));
+                    break;
+                }
 
                 SliceSupportItem = (NGAP_SliceSupportItem_t *)
                         BroadcastPLMNItem->tAISliceSupportList.list.array[k];
@@ -1018,7 +1052,7 @@ void ngap_handle_initial_context_setup_response(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_ACTIVATED, &param);
+                ran_ue, sess, AMF_UPDATE_SM_CONTEXT_ACTIVATED, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -1248,7 +1282,7 @@ void ngap_handle_initial_context_setup_failure(
         amf_ue->deactivation.cause = NGAP_CauseNas_normal_release;
 
         amf_sbi_send_deactivate_all_sessions(
-                amf_ue, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
+                ran_ue, amf_ue, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
                 Cause->present, (int)Cause->choice.radioNetwork);
 
         new_xact_count = amf_sess_xact_count(amf_ue);
@@ -1552,7 +1586,7 @@ void ngap_handle_ue_context_release_request(
 
         if (!PDUSessionList) {
             amf_sbi_send_deactivate_all_sessions(
-                    amf_ue, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
+                    ran_ue, amf_ue, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
                     Cause->present, (int)Cause->choice.radioNetwork);
         } else {
             for (i = 0; i < PDUSessionList->list.count; i++) {
@@ -1584,7 +1618,7 @@ void ngap_handle_ue_context_release_request(
                         PDUSessionItem->pDUSessionID);
                 if (SESSION_CONTEXT_IN_SMF(sess)) {
                     amf_sbi_send_deactivate_session(
-                            sess, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
+                            ran_ue, sess, AMF_UPDATE_SM_CONTEXT_DEACTIVATED,
                             Cause->present, (int)Cause->choice.radioNetwork);
                 }
             }
@@ -2002,7 +2036,7 @@ void ngap_handle_pdu_session_resource_setup_response(
             r = amf_sess_sbi_discover_and_send(
                     OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                     amf_nsmf_pdusession_build_update_sm_context,
-                    sess, AMF_UPDATE_SM_CONTEXT_ACTIVATED, &param);
+                    ran_ue, sess, AMF_UPDATE_SM_CONTEXT_ACTIVATED, &param);
             ogs_expect(r == OGS_OK);
             ogs_assert(r != OGS_ERROR);
 
@@ -2128,7 +2162,7 @@ void ngap_handle_pdu_session_resource_setup_response(
             r = amf_sess_sbi_discover_and_send(
                     OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                     amf_nsmf_pdusession_build_update_sm_context,
-                    sess, AMF_UPDATE_SM_CONTEXT_SETUP_FAIL, &param);
+                    ran_ue, sess, AMF_UPDATE_SM_CONTEXT_SETUP_FAIL, &param);
             ogs_expect(r == OGS_OK);
             ogs_assert(r != OGS_ERROR);
 
@@ -2321,7 +2355,7 @@ void ngap_handle_pdu_session_resource_modify_response(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_MODIFIED, &param);
+                ran_ue, sess, AMF_UPDATE_SM_CONTEXT_MODIFIED, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -2508,7 +2542,7 @@ void ngap_handle_pdu_session_resource_release_response(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_N2_RELEASED, &param);
+                ran_ue, sess, AMF_UPDATE_SM_CONTEXT_N2_RELEASED, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -2516,7 +2550,7 @@ void ngap_handle_pdu_session_resource_release_response(
 
         sess->pdu_session_resource_release_response_received = true;
         if (sess->pdu_session_release_complete_received == true)
-            CLEAR_SM_CONTEXT_REF(sess);
+            CLEAR_SESSION_CONTEXT(sess);
     }
 
 }
@@ -2977,7 +3011,8 @@ void ngap_handle_path_switch_request(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_PATH_SWITCH_REQUEST, &param);
+                ran_ue, sess,
+                AMF_UPDATE_SM_CONTEXT_PATH_SWITCH_REQUEST, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -3366,7 +3401,8 @@ void ngap_handle_handover_required(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_REQUIRED, &param);
+                source_ue, sess,
+                AMF_UPDATE_SM_CONTEXT_HANDOVER_REQUIRED, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -3607,7 +3643,8 @@ void ngap_handle_handover_request_ack(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_REQ_ACK, &param);
+                target_ue, sess,
+                AMF_UPDATE_SM_CONTEXT_HANDOVER_REQ_ACK, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
 
@@ -3879,7 +3916,7 @@ void ngap_handle_handover_cancel(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_CANCEL, &param);
+                source_ue, sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_CANCEL, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
     }
@@ -4188,7 +4225,7 @@ void ngap_handle_handover_notification(
         r = amf_sess_sbi_discover_and_send(
                 OGS_SBI_SERVICE_TYPE_NSMF_PDUSESSION, NULL,
                 amf_nsmf_pdusession_build_update_sm_context,
-                sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_NOTIFY, &param);
+                source_ue, sess, AMF_UPDATE_SM_CONTEXT_HANDOVER_NOTIFY, &param);
         ogs_expect(r == OGS_OK);
         ogs_assert(r != OGS_ERROR);
     }
@@ -4269,6 +4306,16 @@ void ngap_handle_ran_configuration_update(
                     i++) {
             NGAP_SupportedTAItem_t *SupportedTAItem = NULL;
 
+            if (gnb->num_of_supported_ta_list >=
+                    OGS_ARRAY_SIZE(gnb->supported_ta_list)) {
+                ogs_error("OVERFLOW GNB->num_of_supported_ta_list "
+                        "[%d:%d:%d]",
+                        gnb->num_of_supported_ta_list,
+                        OGS_MAX_NUM_OF_SUPPORTED_TA,
+                        (int)OGS_ARRAY_SIZE(gnb->supported_ta_list));
+                break;
+            }
+
             SupportedTAItem = (NGAP_SupportedTAItem_t *)
                     SupportedTAList->list.array[i];
             if (!SupportedTAItem) {
@@ -4295,6 +4342,17 @@ void ngap_handle_ran_configuration_update(
 
                 NGAP_BroadcastPLMNItem_t *BroadcastPLMNItem = NULL;
                 NGAP_PLMNIdentity_t *pLMNIdentity = NULL;
+
+                if (gnb->supported_ta_list[i].num_of_bplmn_list >=
+                        OGS_ARRAY_SIZE(gnb->supported_ta_list[i].bplmn_list)) {
+                    ogs_error("OVERFLOW GNB->supported_ta_list."
+                            "num_of_bplm_list [%d:%d:%d]",
+                            gnb->supported_ta_list[i].num_of_bplmn_list,
+                            OGS_MAX_NUM_OF_BPLMN,
+                            (int)OGS_ARRAY_SIZE(
+                                gnb->supported_ta_list[i].bplmn_list));
+                    break;
+                }
 
                 BroadcastPLMNItem = (NGAP_BroadcastPLMNItem_t *)
                         SupportedTAItem->broadcastPLMNList.list.array[j];
@@ -4329,6 +4387,21 @@ void ngap_handle_ran_configuration_update(
                                 k++) {
                     NGAP_SliceSupportItem_t *SliceSupportItem = NULL;
                     NGAP_S_NSSAI_t *s_NSSAI = NULL;
+
+                    if (gnb->supported_ta_list[i].
+                            bplmn_list[j].num_of_s_nssai >=
+                            OGS_ARRAY_SIZE(gnb->supported_ta_list[i].
+                                bplmn_list[j].s_nssai)) {
+                        ogs_error("OVERFLOW GNB->num_of_supported_ta_list."
+                                "bplmn_list.num_of_s_nssai"
+                                "[%d:%d:%d]",
+                                gnb->supported_ta_list[i].bplmn_list[j].
+                                    num_of_s_nssai,
+                                OGS_MAX_NUM_OF_SLICE_SUPPORT,
+                                (int)OGS_ARRAY_SIZE(gnb->supported_ta_list[i].
+                                    bplmn_list[j].s_nssai));
+                        break;
+                    }
 
                     SliceSupportItem = (NGAP_SliceSupportItem_t *)
                         BroadcastPLMNItem->tAISliceSupportList.list.array[k];
@@ -4604,7 +4677,7 @@ void ngap_handle_ng_reset(
                 old_xact_count = amf_sess_xact_count(amf_ue);
 
                 amf_sbi_send_deactivate_all_sessions(
-                    amf_ue, AMF_REMOVE_S1_CONTEXT_BY_RESET_PARTIAL,
+                    ran_ue, amf_ue, AMF_REMOVE_S1_CONTEXT_BY_RESET_PARTIAL,
                     NGAP_Cause_PR_radioNetwork,
                     NGAP_CauseRadioNetwork_failure_in_radio_interface_procedure);
 

@@ -74,7 +74,7 @@ void nssf_state_operational(ogs_fsm_t *s, nssf_event_t *e)
             ogs_assert(true ==
                 ogs_sbi_server_send_error(
                     stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                    NULL, "cannot parse HTTP message", NULL));
+                    NULL, "cannot parse HTTP message", NULL, NULL));
             break;
         }
 
@@ -91,12 +91,41 @@ void nssf_state_operational(ogs_fsm_t *s, nssf_event_t *e)
             ogs_assert(true ==
                 ogs_sbi_server_send_error(
                     stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                    &message, "Not supported version", NULL));
+                    &message, "Not supported version", NULL, NULL));
             ogs_sbi_message_free(&message);
             break;
         }
 
         SWITCH(message.h.service.name)
+        CASE(OGS_SBI_SERVICE_NAME_NNRF_NFM)
+
+            SWITCH(message.h.resource.component[0])
+            CASE(OGS_SBI_RESOURCE_NAME_NF_STATUS_NOTIFY)
+                SWITCH(message.h.method)
+                CASE(OGS_SBI_HTTP_METHOD_POST)
+                    ogs_nnrf_nfm_handle_nf_status_notify(stream, &message);
+                    break;
+
+                DEFAULT
+                    ogs_error("Invalid HTTP method [%s]", message.h.method);
+                    ogs_assert(true ==
+                        ogs_sbi_server_send_error(stream,
+                            OGS_SBI_HTTP_STATUS_FORBIDDEN, &message,
+                            "Invalid HTTP method", message.h.method, NULL));
+                END
+                break;
+
+            DEFAULT
+                ogs_error("Invalid resource name [%s]",
+                        message.h.resource.component[0]);
+                ogs_assert(true ==
+                    ogs_sbi_server_send_error(stream,
+                        OGS_SBI_HTTP_STATUS_BAD_REQUEST, &message,
+                        "Invalid resource name",
+                        message.h.resource.component[0], NULL));
+            END
+            break;
+
         CASE(OGS_SBI_SERVICE_NAME_NNSSF_NSSELECTION)
 
             SWITCH(message.h.resource.component[0])
@@ -111,7 +140,8 @@ void nssf_state_operational(ogs_fsm_t *s, nssf_event_t *e)
                     ogs_assert(true ==
                         ogs_sbi_server_send_error(stream,
                             OGS_SBI_HTTP_STATUS_FORBIDDEN,
-                            &message, "Invalid HTTP method", message.h.method));
+                            &message, "Invalid HTTP method", message.h.method,
+                            NULL));
                 END
                 break;
 
@@ -122,7 +152,7 @@ void nssf_state_operational(ogs_fsm_t *s, nssf_event_t *e)
                     ogs_sbi_server_send_error(stream,
                         OGS_SBI_HTTP_STATUS_BAD_REQUEST, &message,
                         "Unknown resource name",
-                        message.h.resource.component[0]));
+                        message.h.resource.component[0], NULL));
             END
             break;
 
@@ -131,7 +161,8 @@ void nssf_state_operational(ogs_fsm_t *s, nssf_event_t *e)
             ogs_assert(true ==
                 ogs_sbi_server_send_error(stream,
                     OGS_SBI_HTTP_STATUS_BAD_REQUEST, &message,
-                    "Invalid API name", message.h.resource.component[0]));
+                    "Invalid API name", message.h.resource.component[0],
+                    NULL));
         END
 
         /* In lib/sbi/server.c, notify_completed() releases 'request' buffer. */

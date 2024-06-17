@@ -1,0 +1,31 @@
+@startuml
+participant UE as "User Equipment"
+participant IDS as "Intrusion Detection System"
+participant Service as "Dienst"
+
+
+UE -> Service: Zugriffsanfrage
+Service -> UE: Authentifizierungsschema senden
+UE -> IDS: Schema empfangen (mithören)
+UE -> UE: Token als FaRHash bilden
+UE -> Service: Token (FaRHash) senden
+Service -> Service: FaRHash validieren
+Service -> IDS: FaRHash empfangen (mithören)
+
+alt FaRHash valide
+    Service -> UE: Zugriff gewährt
+else FaRHash nicht valide
+    Service -> UE: Zugriff verweigert
+end
+
+loop Bei jeder Nutzung
+    UE -> Service: Dienstnutzung
+    IDS -> IDS: Passkey überprüfen
+    alt Passkey noch valide
+        IDS -> UE: Nutzung erlaubt
+    else Passkey nicht valide
+        IDS -> Service: Neue Authentifizierung anfordern
+        Service -> UE: Neue Authentifizierung anfordern
+    end
+end
+@enduml

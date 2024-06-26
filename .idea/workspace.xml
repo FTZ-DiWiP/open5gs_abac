@@ -13,13 +13,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d28c3fef-1582-481a-a83d-a1a57f1910c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/misc/5GFarHash.puml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/app.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/context.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/context.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/init.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/meson.build" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helm-charts/charts/open5gs-abac/Chart.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helm-charts/charts/open5gs-abac/templates/configmap.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helm-charts/charts/open5gs-abac/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-charts/charts/open5gs/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-charts/charts/open5gs/Chart.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-charts/charts/open5gs/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/helm-charts/charts/open5gs/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/meson.build" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +36,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/helm-charts" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -92,7 +96,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "da1b8106",
     "last_opened_file_path": "C:/Users/Kaven/CLionProjects/open5gs_abac",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

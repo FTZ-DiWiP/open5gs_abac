@@ -93,7 +93,7 @@ endforeach
 
 # Determination of thread implementation
 threads = []
-if host_system == 'windows' and not get_option('force_posix_threads')
+if host_system == 'windows' #and not get_option('force_posix_threads')
 else
     threads = dependency('threads')
     if cc.has_header_symbol('pthread.h', 'pthread_barrier_wait')

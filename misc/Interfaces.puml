@@ -1,0 +1,57 @@
+@startuml
+skinparam componentStyle rectangle
+package "Kubernetes Cluster" {
+  [Ingress] <<Ingress>>
+  package "OPEN5GS" {
+    [AMF] as AMF
+    [SMF] as SMF
+    [UPF] as UPF
+    [PCF] as PCF
+    [AUSF] as AUSF
+    [UDM] as UDM
+    [NRF] as NRF
+    [NSSF] as NSSF
+
+    package "ABAC" {
+        [PIP] as PIP
+        [PEP] as PEP
+        [PDP] as PDP
+        [PRP] as PRP
+        [Context Handler] as Handler
+
+        Handler <--> PIP
+        Handler <--> PEP
+        Handler <--> PDP
+        Handler <--> PRP
+    }
+  }
+  package "UERANSIM" {
+    [UE] as UE
+    [NG-RAN] as RAN
+    UE --> RAN : Simulate Communication
+  }
+  package "Zertifikatsverwaltung" {
+      [Attribute Authority] as AA
+      [Policy Authority] as PA
+
+    }
+}
+package "Handy" {
+    [APP]
+}
+[Data Network]
+
+Handy --> [Ingress] : HTTP/HTTPS Request Attributzertifikat
+RAN --> AMF : Access Request
+AMF <--> Handler : Access Request
+AMF --> SMF : Control Signaling
+SMF --> UPF : Data Plane Management
+AMF --> PCF : Policy Control
+AMF --> AUSF : Authentication
+AMF --> UDM : User Data Management
+AMF --> NRF : NF Registration
+AMF --> NSSF : Slice Selection
+
+
+[UPF] --> [Data Network]
+@enduml

@@ -2,8 +2,11 @@ libabac_sources = files('''
     context.c
     event.c
 
-    nnrf-handler.c
-    nausf-handler.c
+    pip-build.c
+    pip-handler.c
+
+    prp-build.c
+    prp-handler.c
 
     nudm-build.c
     nudm-handler.c

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
@@ -10,6 +11,7 @@
 
 // Function prototype
 char* create_certificate_with_json_extension(const char *json);
+char* extract_json_from_certificate(const char *cert_str);
 
 char* create_certificate_with_json_extension(const char *json) {
     EVP_PKEY *pkey = NULL;
@@ -110,9 +112,6 @@ char* create_certificate_with_json_extension(const char *json) {
     return cert_str;
 }
 
-// Function prototype
-char* extract_json_from_certificate(const char *cert_str);
-
 char* extract_json_from_certificate(const char *cert_str) {
     BIO *mem_bio = BIO_new_mem_buf(cert_str, -1);
     if (!mem_bio) {
@@ -154,8 +153,8 @@ char* extract_json_from_certificate(const char *cert_str) {
 }
 
 int main(void) {
-    const char *json = "{\"name\": \"Sascha\", \"surname\": \"Kaven\", \"office\": \"Co.08\"}";
-    char *cert = create_certificate_with_json_extension(json);
+    const char *json_raum = "{\"Mitarbeiter\": \"Sascha\", \"Schulung\": \"2 17.10.2024\", \"Gesundheitsstatus\": \"17.10.2024\", \"Druckdifferenz\": \"50 kPa\", \"Uhrzeit\": \"11:15:00\", \"Staubkonzentration\": \"0.00005 kg/m^3\", \"Wartungsarbeit\": \"Einsatzbereit\"}";
+    char *cert = create_certificate_with_json_extension(json_raum);
     if (cert) {
         printf("Certificate:\n%s\n", cert);
         char *json_2 = extract_json_from_certificate(cert);

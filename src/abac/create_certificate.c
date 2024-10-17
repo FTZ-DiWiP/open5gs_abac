@@ -19,15 +19,8 @@ char* create_certificate_with_json_extension(const char *json) {
     X509 *x509 = NULL;
     char *cert_str = NULL;
     BIO *mem_bio = NULL;
-
-    // Define the file path
-    char cwd[1024];
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
-        printf("Current working dir: %s\n", cwd);
-    } else {
-        perror("getcwd() error");
-    }
-    const char *cert_file_path = "/srv/projects/open5gs_abac/configs/open5gs/tls/abac_certificate.pem";
+    
+    const char *cert_file_path = "../../../configs/open5gs/tls/abac_certificate.pem";
 
     // Initialize OpenSSL
     OpenSSL_add_all_algorithms();

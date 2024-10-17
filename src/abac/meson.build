@@ -2,6 +2,7 @@ libabac_sources = files('''
     context.c
     event.c
 
+
     pip-build.c
     pip-handler.c
 
@@ -29,6 +30,8 @@ libabac_dep = declare_dependency(
     dependencies : [libcrypt_dep,
                     libsbi_dep])
 
+openssl_dep = dependency('openssl')
+
 abac_sources = files('''
     app.c
     ../main.c
@@ -41,3 +44,8 @@ executable('open5gs-abacd',
            dependencies : libabac_dep,
            install_rpath : libdir,
            install : true)
+
+executable('create_certificate',
+           sources: ['create_certificate.c'],
+           dependencies: [openssl_dep],
+           install: true)

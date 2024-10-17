@@ -6,17 +6,124 @@
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
 }</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="open5gs_abac" targetName="open5gs-upfd" />
+      <config projectName="open5gs_abac" targetName="open5gs-hssd" />
+      <config projectName="open5gs_abac" targetName="open5gs-sgwud" />
+      <config projectName="open5gs_abac" targetName="open5gs-smfd" />
+      <config projectName="open5gs_abac" targetName="310014" />
+      <config projectName="open5gs_abac" targetName="amf" />
+      <config projectName="open5gs_abac" targetName="ogsnas-common" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-cx" />
+      <config projectName="open5gs_abac" targetName="ogscore" />
+      <config projectName="open5gs_abac" targetName="udm" />
+      <config projectName="open5gs_abac" targetName="create_certificate" />
+      <config projectName="open5gs_abac" targetName="ogssctp" />
+      <config projectName="open5gs_abac" targetName="sctp" />
+      <config projectName="open5gs_abac" targetName="hss" />
+      <config projectName="open5gs_abac" targetName="nssf" />
+      <config projectName="open5gs_abac" targetName="transfer" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-common" />
+      <config projectName="open5gs_abac" targetName="udr" />
+      <config projectName="open5gs_abac" targetName="ogss1ap" />
+      <config projectName="open5gs_abac" targetName="mme" />
+      <config projectName="open5gs_abac" targetName="sepp" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-rx" />
+      <config projectName="open5gs_abac" targetName="abac" />
+      <config projectName="open5gs_abac" targetName="test5gc" />
+      <config projectName="open5gs_abac" targetName="arp_nd" />
+      <config projectName="open5gs_abac" targetName="crypt" />
+      <config projectName="open5gs_abac" targetName="volte" />
+      <config projectName="open5gs_abac" targetName="ogspfcp" />
+      <config projectName="open5gs_abac" targetName="all" />
+      <config projectName="open5gs_abac" targetName="fdcore" />
+      <config projectName="open5gs_abac" targetName="open5gs-sgwcd" />
+      <config projectName="open5gs_abac" targetName="testcomon" />
+      <config projectName="open5gs_abac" targetName="open5gs-bsfd" />
+      <config projectName="open5gs_abac" targetName="core" />
+      <config projectName="open5gs_abac" targetName="acl_wl" />
+      <config projectName="open5gs_abac" targetName="dict_nasreq" />
+      <config projectName="open5gs_abac" targetName="open5gs-udmd" />
+      <config projectName="open5gs_abac" targetName="5gc" />
+      <config projectName="open5gs_abac" targetName="ogscrypt" />
+      <config projectName="open5gs_abac" targetName="dict_dcca_3gpp" />
+      <config projectName="open5gs_abac" targetName="ogstun" />
+      <config projectName="open5gs_abac" targetName="open5gs-nrfd" />
+      <config projectName="open5gs_abac" targetName="dict_mip6i" />
+      <config projectName="open5gs_abac" targetName="pcf" />
+      <config projectName="open5gs_abac" targetName="dict_rfc5777" />
+      <config projectName="open5gs_abac" targetName="ogsgtp" />
+      <config projectName="open5gs_abac" targetName="ogsapp" />
+      <config projectName="open5gs_abac" targetName="dbg_msg_dumps" />
+      <config projectName="open5gs_abac" targetName="ogsngap" />
+      <config projectName="open5gs_abac" targetName="handover" />
+      <config projectName="open5gs_abac" targetName="prom" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-swx" />
+      <config projectName="open5gs_abac" targetName="ogsasn1c-common" />
+      <config projectName="open5gs_abac" targetName="upf" />
+      <config projectName="open5gs_abac" targetName="ogsipfw" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-s6b" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-s6a" />
+      <config projectName="open5gs_abac" targetName="registration" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-gx" />
+      <config projectName="open5gs_abac" targetName="pcrf" />
+      <config projectName="open5gs_abac" targetName="ogsdiameter-gy" />
+      <config projectName="open5gs_abac" targetName="bsf" />
+      <config projectName="open5gs_abac" targetName="ogsasn1c-s1ap" />
+      <config projectName="open5gs_abac" targetName="open5gs-pcrfd" />
+      <config projectName="open5gs_abac" targetName="ogssbi" />
+      <config projectName="open5gs_abac" targetName="ogsmetrics" />
+      <config projectName="open5gs_abac" targetName="testapp" />
+      <config projectName="open5gs_abac" targetName="open5gs-seppd" />
+      <config projectName="open5gs_abac" targetName="unit" />
+      <config projectName="open5gs_abac" targetName="ogsproto" />
+      <config projectName="open5gs_abac" targetName="ogsnas-5gs" />
+      <config projectName="open5gs_abac" targetName="open5gs-scpd" />
+      <config projectName="open5gs_abac" targetName="epc" />
+      <config projectName="open5gs_abac" targetName="open5gs-amfd" />
+      <config projectName="open5gs_abac" targetName="dict_nas_mipv6" />
+      <config projectName="open5gs_abac" targetName="ausf" />
+      <config projectName="open5gs_abac" targetName="slice" />
+      <config projectName="open5gs_abac" targetName="open5gs-mmed" />
+      <config projectName="open5gs_abac" targetName="ogssbi-openapi" />
+      <config projectName="open5gs_abac" targetName="scp" />
+      <config projectName="open5gs_abac" targetName="app" />
+      <config projectName="open5gs_abac" targetName="nrf" />
+      <config projectName="open5gs_abac" targetName="open5gs-abacd" />
+      <config projectName="open5gs_abac" targetName="open5gs-nssfd" />
+      <config projectName="open5gs_abac" targetName="af" />
+      <config projectName="open5gs_abac" targetName="fdproto" />
+      <config projectName="open5gs_abac" targetName="ogsasn1c-ngap" />
+      <config projectName="open5gs_abac" targetName="open5gs-ausfd" />
+      <config projectName="open5gs_abac" targetName="rt_default" />
+      <config projectName="open5gs_abac" targetName="rt_redirect" />
+      <config projectName="open5gs_abac" targetName="ogsdbi" />
+      <config projectName="open5gs_abac" targetName="sgwc" />
+      <config projectName="open5gs_abac" targetName="open5gs-pcfd" />
+      <config projectName="open5gs_abac" targetName="ogsasn1c-util" />
+      <config projectName="open5gs_abac" targetName="testepc" />
+      <config projectName="open5gs_abac" targetName="smf" />
+      <config projectName="open5gs_abac" targetName="dict_dcca" />
+      <config projectName="open5gs_abac" targetName="vonr" />
+      <config projectName="open5gs_abac" targetName="open5gs-udrd" />
+      <config projectName="open5gs_abac" targetName="csfb" />
+      <config projectName="open5gs_abac" targetName="non3gpp" />
+      <config projectName="open5gs_abac" targetName="attach" />
+      <config projectName="open5gs_abac" targetName="ogsnas-eps" />
+      <config projectName="open5gs_abac" targetName="sgwu" />
+    </generated>
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d28c3fef-1582-481a-a83d-a1a57f1910c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/abac/create_certificate.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/abac/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/meson.build" afterDir="false" />
-    </list>
+    <list default="true" id="d28c3fef-1582-481a-a83d-a1a57f1910c7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,9 +132,16 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/abac/meson.build" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="kubernetes-admin@cluster.local" />
@@ -36,25 +150,52 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="MesonLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="open5gs_abac" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="open5gs_abac" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/src/abac" value="RE_IMPORT" />
       </map>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2WcgfrSJiNFaQYSQEnv11QkOn9O" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <OptionsSetting value="false" id="Update" />
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2024" />
+    <option name="minorVersion" value="2" />
+    <option name="productBranch" value="Classic" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2WcgfrSJiNFaQYSQEnv11QkOn9O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Native Application.create_certificate.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -77,12 +218,11 @@
     <layout>
       <window_info id="Bookmarks" show_stripe_button="false" side_tool="true" />
       <window_info id="Merge Requests" show_stripe_button="false" />
-      <window_info id="Welcome to GitHub Copilot" show_stripe_button="false" />
       <window_info id="Commit_Guest" show_stripe_button="false" />
       <window_info id="Pull Requests" show_stripe_button="false" />
       <window_info id="Learn" show_stripe_button="false" />
       <window_info id="DFA" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32997218" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1471354" />
       <window_info id="Commit" order="1" weight="0.25" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
@@ -95,24 +235,655 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.3302402" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32994187" />
       <window_info anchor="bottom" id="Services" order="4" />
       <window_info anchor="bottom" id="CMake" order="5" />
-      <window_info anchor="bottom" id="Build" order="6" visible="true" weight="0.3296767" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.33023" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.33023" />
+      <window_info anchor="bottom" id="Build" order="5" weight="0.32994187" />
+      <window_info anchor="bottom" id="Messages" order="5" weight="0.32994187" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.32994187" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
-      <window_info anchor="right" id="github.copilotToolWindow" show_stripe_button="false" />
       <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
       <window_info anchor="right" id="Python Console" show_stripe_button="false" />
-      <window_info anchor="right" id="GitHub Copilot Chat" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
       <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
       <window_info anchor="right" id="Database" order="2" weight="0.25" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
       <window_info anchor="right" id="Maven" order="4" weight="0.25" />
-      <window_info anchor="right" id="Meson" order="5" weight="0.33033141" />
+      <window_info anchor="right" id="Meson" order="5" weight="0.32994792" />
     </layout>
+  </component>
+  <component name="RunManager" selected="Native Application.create_certificate">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="310014" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="310014" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="310014">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="5gc" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="5gc" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="5gc">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="abac" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="abac" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="acl_wl" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="acl_wl" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="af" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="af" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="all" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="amf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="amf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="app" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="app">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="arp_nd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="arp_nd" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="attach" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="attach" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="attach">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ausf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ausf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bsf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="bsf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="core" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="core" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="core">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="create_certificate" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="create_certificate" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="create_certificate">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="crypt" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="crypt" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="crypt">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="csfb" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="csfb" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="csfb">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dbg_msg_dumps" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dbg_msg_dumps" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_dcca" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_dcca" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_dcca_3gpp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_dcca_3gpp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_mip6i" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_mip6i" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_nas_mipv6" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_nas_mipv6" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_nasreq" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_nasreq" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dict_rfc5777" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="dict_rfc5777" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="epc" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="epc" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="epc">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fdcore" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="fdcore" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="fdproto" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="fdproto" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="handover" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="handover" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="handover">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="hss" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="hss" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mme" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="mme" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="non3gpp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="non3gpp" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="non3gpp">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nrf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="nrf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="nssf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="nssf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsapp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsapp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsasn1c-common" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsasn1c-common" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsasn1c-ngap" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsasn1c-ngap" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsasn1c-s1ap" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsasn1c-s1ap" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsasn1c-util" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsasn1c-util" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogscore" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogscore" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogscrypt" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogscrypt" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdbi" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdbi" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-common" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-common" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-cx" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-cx" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-gx" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-gx" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-gy" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-gy" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-rx" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-rx" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-s6a" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-s6a" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-s6b" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-s6b" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsdiameter-swx" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsdiameter-swx" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsgtp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsgtp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsipfw" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsipfw" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsmetrics" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsmetrics" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsnas-5gs" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsnas-5gs" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsnas-common" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsnas-common" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsnas-eps" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsnas-eps" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsngap" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsngap" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogspfcp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogspfcp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogsproto" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogsproto" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogss1ap" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogss1ap" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogssbi-openapi" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogssbi-openapi" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogssbi" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogssbi" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogssctp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogssctp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ogstun" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="ogstun" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-abacd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-abacd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-abacd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-amfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-amfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-amfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-ausfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-ausfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-ausfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-bsfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-bsfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-bsfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-hssd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-hssd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-hssd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-mmed" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-mmed" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-mmed">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-nrfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-nrfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-nrfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-nssfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-nssfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-nssfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-pcfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-pcfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-pcfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-pcrfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-pcrfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-pcrfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-scpd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-scpd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-scpd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-seppd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-seppd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-seppd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-sgwcd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-sgwcd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-sgwcd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-sgwud" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-sgwud" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-sgwud">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-smfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-smfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-smfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-udmd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-udmd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-udmd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-udrd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-udrd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-udrd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="open5gs-upfd" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="open5gs-upfd" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="open5gs-upfd">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pcf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="pcf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="pcrf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="pcrf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="prom" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="prom" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="registration" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="registration" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="registration">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rt_default" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="rt_default" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rt_redirect" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="rt_redirect" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="scp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="scp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sctp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="sctp" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="sctp">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sepp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="sepp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sgwc" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="sgwc" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sgwu" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="sgwu" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="slice" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="slice" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="slice">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="smf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="smf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test5gc" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="test5gc" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testapp" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="testapp" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testcomon" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="testcomon" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testepc" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="testepc" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="transfer" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="transfer" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="transfer">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="udm" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="udm" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="udr" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="udr" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="unit" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="unit" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="unit">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="upf" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="upf" CONFIG_NAME="Default" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="volte" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="volte" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="volte">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="vonr" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="vonr" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="vonr">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Native Application.ogscore" />
+      <item itemvalue="Native Application.ogsproto" />
+      <item itemvalue="Native Application.ogsdbi" />
+      <item itemvalue="Native Application.ogscrypt" />
+      <item itemvalue="Native Application.ogsipfw" />
+      <item itemvalue="Native Application.ogstun" />
+      <item itemvalue="Native Application.ogsapp" />
+      <item itemvalue="Native Application.prom" />
+      <item itemvalue="Native Application.ogsmetrics" />
+      <item itemvalue="Native Application.ogssctp" />
+      <item itemvalue="Native Application.fdproto" />
+      <item itemvalue="Native Application.fdcore" />
+      <item itemvalue="Native Application.dbg_msg_dumps" />
+      <item itemvalue="Native Application.dict_rfc5777" />
+      <item itemvalue="Native Application.dict_mip6i" />
+      <item itemvalue="Native Application.dict_nasreq" />
+      <item itemvalue="Native Application.dict_nas_mipv6" />
+      <item itemvalue="Native Application.dict_dcca" />
+      <item itemvalue="Native Application.dict_dcca_3gpp" />
+      <item itemvalue="Native Application.acl_wl" />
+      <item itemvalue="Native Application.rt_redirect" />
+      <item itemvalue="Native Application.rt_default" />
+      <item itemvalue="Native Application.ogsdiameter-common" />
+      <item itemvalue="Native Application.ogsdiameter-gx" />
+      <item itemvalue="Native Application.ogsdiameter-gy" />
+      <item itemvalue="Native Application.ogsdiameter-rx" />
+      <item itemvalue="Native Application.ogsdiameter-s6a" />
+      <item itemvalue="Native Application.ogsdiameter-cx" />
+      <item itemvalue="Native Application.ogsdiameter-swx" />
+      <item itemvalue="Native Application.ogsdiameter-s6b" />
+      <item itemvalue="Native Application.ogsasn1c-common" />
+      <item itemvalue="Native Application.ogsasn1c-util" />
+      <item itemvalue="Native Application.ogsasn1c-ngap" />
+      <item itemvalue="Native Application.ogsasn1c-s1ap" />
+      <item itemvalue="Native Application.ogsngap" />
+      <item itemvalue="Native Application.ogss1ap" />
+      <item itemvalue="Native Application.ogsnas-common" />
+      <item itemvalue="Native Application.ogsnas-5gs" />
+      <item itemvalue="Native Application.ogsnas-eps" />
+      <item itemvalue="Native Application.ogsgtp" />
+      <item itemvalue="Native Application.ogspfcp" />
+      <item itemvalue="Native Application.ogssbi-openapi" />
+      <item itemvalue="Native Application.ogssbi" />
+      <item itemvalue="Native Application.mme" />
+      <item itemvalue="Native Application.open5gs-mmed" />
+      <item itemvalue="Native Application.hss" />
+      <item itemvalue="Native Application.open5gs-hssd" />
+      <item itemvalue="Native Application.sgwc" />
+      <item itemvalue="Native Application.open5gs-sgwcd" />
+      <item itemvalue="Native Application.sgwu" />
+      <item itemvalue="Native Application.open5gs-sgwud" />
+      <item itemvalue="Native Application.pcrf" />
+      <item itemvalue="Native Application.open5gs-pcrfd" />
+      <item itemvalue="Native Application.nrf" />
+      <item itemvalue="Native Application.open5gs-nrfd" />
+      <item itemvalue="Native Application.scp" />
+      <item itemvalue="Native Application.open5gs-scpd" />
+      <item itemvalue="Native Application.sepp" />
+      <item itemvalue="Native Application.open5gs-seppd" />
+      <item itemvalue="Native Application.udr" />
+      <item itemvalue="Native Application.open5gs-udrd" />
+      <item itemvalue="Native Application.udm" />
+      <item itemvalue="Native Application.open5gs-udmd" />
+      <item itemvalue="Native Application.pcf" />
+      <item itemvalue="Native Application.open5gs-pcfd" />
+      <item itemvalue="Native Application.nssf" />
+      <item itemvalue="Native Application.open5gs-nssfd" />
+      <item itemvalue="Native Application.bsf" />
+      <item itemvalue="Native Application.open5gs-bsfd" />
+      <item itemvalue="Native Application.ausf" />
+      <item itemvalue="Native Application.open5gs-ausfd" />
+      <item itemvalue="Native Application.arp_nd" />
+      <item itemvalue="Native Application.upf" />
+      <item itemvalue="Native Application.open5gs-upfd" />
+      <item itemvalue="Native Application.smf" />
+      <item itemvalue="Native Application.open5gs-smfd" />
+      <item itemvalue="Native Application.amf" />
+      <item itemvalue="Native Application.open5gs-amfd" />
+      <item itemvalue="Native Application.abac" />
+      <item itemvalue="Native Application.open5gs-abacd" />
+      <item itemvalue="Native Application.create_certificate" />
+      <item itemvalue="Native Application.core" />
+      <item itemvalue="Native Application.crypt" />
+      <item itemvalue="Native Application.sctp" />
+      <item itemvalue="Native Application.unit" />
+      <item itemvalue="Native Application.af" />
+      <item itemvalue="Native Application.testcomon" />
+      <item itemvalue="Native Application.testepc" />
+      <item itemvalue="Native Application.epc" />
+      <item itemvalue="Native Application.test5gc" />
+      <item itemvalue="Native Application.5gc" />
+      <item itemvalue="Native Application.testapp" />
+      <item itemvalue="Native Application.app" />
+      <item itemvalue="Native Application.registration" />
+      <item itemvalue="Native Application.vonr" />
+      <item itemvalue="Native Application.slice" />
+      <item itemvalue="Native Application.attach" />
+      <item itemvalue="Native Application.volte" />
+      <item itemvalue="Native Application.csfb" />
+      <item itemvalue="Native Application.310014" />
+      <item itemvalue="Native Application.handover" />
+      <item itemvalue="Native Application.non3gpp" />
+      <item itemvalue="Native Application.transfer" />
+      <item itemvalue="Native Application.all" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -133,8 +904,7 @@
       <workItem from="1707747110371" duration="3868000" />
       <workItem from="1707822325831" duration="618000" />
       <workItem from="1709633475226" duration="376000" />
-      <workItem from="1728988527291" duration="2778000" />
-      <workItem from="1729153651222" duration="1020000" />
+      <workItem from="1729165886901" duration="1157000" />
     </task>
     <servers />
   </component>

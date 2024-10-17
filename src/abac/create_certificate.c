@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
@@ -18,6 +19,15 @@ char* create_certificate_with_json_extension(const char *json) {
     X509 *x509 = NULL;
     char *cert_str = NULL;
     BIO *mem_bio = NULL;
+
+    // Define the file path
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("Current working dir: %s\n", cwd);
+    } else {
+        perror("getcwd() error");
+    }
+    const char *cert_file_path = "/srv/projects/open5gs_abac/configs/open5gs/tls/abac_certificate.pem";
 
     // Initialize OpenSSL
     OpenSSL_add_all_algorithms();
@@ -49,8 +59,8 @@ char* create_certificate_with_json_extension(const char *json) {
 
     X509_NAME *name = X509_get_subject_name(x509);
     X509_NAME_add_entry_by_txt(name, "C", MBSTRING_ASC, (unsigned char *)"DE", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC, (unsigned char *)"HAW Hamburg", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"haw-hamburg.de", -1, -1, 0);
+    X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC, (unsigned char *)"My Company", -1, -1, 0);
+    X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"example.com", -1, -1, 0);
     X509_set_issuer_name(x509, name);
 
     // Add custom JSON extension
@@ -81,15 +91,6 @@ char* create_certificate_with_json_extension(const char *json) {
         goto cleanup;
     }
 
-    // Write the private key to a file
-    FILE *key_file = fopen(KEY_FILE, "wb");
-    if (key_file) {
-        PEM_write_PrivateKey(key_file, pkey, NULL, NULL, 0, NULL, NULL);
-        fclose(key_file);
-    } else {
-        fprintf(stderr, "Failed to open key file for writing\n");
-    }
-
     // Capture the certificate in a BIO for conversion to a string
     mem_bio = BIO_new(BIO_s_mem());
     if (PEM_write_bio_X509(mem_bio, x509)) {
@@ -98,6 +99,16 @@ char* create_certificate_with_json_extension(const char *json) {
         cert_str = strndup(bptr->data, bptr->length);
     } else {
         fprintf(stderr, "Failed to write certificate to BIO\n");
+        goto cleanup;
+    }
+
+    // Write the certificate to the specified file
+    FILE *cert_file = fopen(cert_file_path, "w");
+    if (cert_file) {
+        PEM_write_X509(cert_file, x509);
+        fclose(cert_file);
+    } else {
+        fprintf(stderr, "Failed to open cert file for writing\n");
     }
 
     cleanup:

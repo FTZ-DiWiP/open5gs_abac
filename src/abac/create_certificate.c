@@ -1,37 +1,45 @@
-//
-// Created by abac on 17.10.24.
-//
 #include <stdio.h>
+#include <string.h>
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 #include <openssl/pem.h>
-#include <openssl/rsa.h>
 #include <openssl/evp.h>
-#include <openssl/bn.h>
 #include <openssl/err.h>
 
-#define CERT_FILE "cert.pem"
 #define KEY_FILE  "key.pem"
 
-void create_certificate_with_json_extension(const char *json) {
+// Function prototype
+char* create_certificate_with_json_extension(const char *json);
+
+char* create_certificate_with_json_extension(const char *json) {
+    EVP_PKEY *pkey = NULL;
+    X509 *x509 = NULL;
+    char *cert_str = NULL;
+    BIO *mem_bio = NULL;
+
+    // Initialize OpenSSL
     OpenSSL_add_all_algorithms();
     ERR_load_crypto_strings();
 
-    EVP_PKEY *pkey = EVP_PKEY_new();
-    RSA *rsa = RSA_new();
-
-    BIGNUM *bn = BN_new();
-    BN_set_word(bn, RSA_F4);
-
-    if (!RSA_generate_key_ex(rsa, 2048, bn, NULL)) {
-        fprintf(stderr, "Failed to generate RSA key\n");
+    // Generate Key Pair
+    EVP_PKEY_CTX *pkey_ctx = EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, NULL);
+    if (!pkey_ctx || EVP_PKEY_keygen_init(pkey_ctx) <= 0 || EVP_PKEY_CTX_set_rsa_keygen_bits(pkey_ctx, 2048) <= 0) {
+        fprintf(stderr, "Failed to initialize or configure keygen context\n");
         goto cleanup;
     }
 
-    EVP_PKEY_assign_RSA(pkey, rsa);
-    rsa = NULL;  // pkey owns rsa now
+    if (EVP_PKEY_keygen(pkey_ctx, &pkey) <= 0) {
+        fprintf(stderr, "Failed to generate key pair\n");
+        goto cleanup;
+    }
 
-    X509 *x509 = X509_new();
+    // Create new X.509 certificate
+    x509 = X509_new();
+    if (!x509) {
+        fprintf(stderr, "Failed to create X.509 certificate\n");
+        goto cleanup;
+    }
+
     ASN1_INTEGER_set(X509_get_serialNumber(x509), 1);
     X509_gmtime_adj(X509_getm_notBefore(x509), 0);
     X509_gmtime_adj(X509_getm_notAfter(x509), 31536000L);
@@ -43,19 +51,17 @@ void create_certificate_with_json_extension(const char *json) {
     X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"example.com", -1, -1, 0);
     X509_set_issuer_name(x509, name);
 
-    if (!X509_sign(x509, pkey, EVP_sha256())) {
-        fprintf(stderr, "Failed to sign certificate\n");
-        goto cleanup;
-    }
-
     // Add custom JSON extension
     if (json) {
         X509_EXTENSION *ext;
-        ASN1_OCTET_STRING *ext_data;
-        ext_data = ASN1_OCTET_STRING_new();
-        ASN1_OCTET_STRING_set(ext_data, (unsigned char *)json, strlen(json));
+        ASN1_OCTET_STRING *ext_data = ASN1_OCTET_STRING_new();
+        if (ext_data == NULL || !ASN1_OCTET_STRING_set(ext_data, (unsigned char *)json, strlen(json))) {
+            fprintf(stderr, "Failed to create ASN1 octet string\n");
+            ASN1_OCTET_STRING_free(ext_data);
+            goto cleanup;
+        }
 
-        ext = X509_EXTENSION_create_by_NID(NULL, NID_netscape_comment, 0, ext_data);
+        ext = X509_EXTENSION_create_by_OBJ(NULL, OBJ_nid2obj(NID_netscape_comment), 0, ext_data);
         ASN1_OCTET_STRING_free(ext_data);
 
         if (ext) {
@@ -67,14 +73,13 @@ void create_certificate_with_json_extension(const char *json) {
         }
     }
 
-    FILE *cert_file = fopen(CERT_FILE, "wb");
-    if (cert_file) {
-        PEM_write_X509(cert_file, x509);
-        fclose(cert_file);
-    } else {
-        fprintf(stderr, "Failed to open cert file for writing\n");
+    // Sign the certificate with the private key
+    if (!X509_sign(x509, pkey, EVP_sha256())) {
+        fprintf(stderr, "Failed to sign certificate\n");
+        goto cleanup;
     }
 
+    // Write the private key to a file
     FILE *key_file = fopen(KEY_FILE, "wb");
     if (key_file) {
         PEM_write_PrivateKey(key_file, pkey, NULL, NULL, 0, NULL, NULL);
@@ -83,18 +88,34 @@ void create_certificate_with_json_extension(const char *json) {
         fprintf(stderr, "Failed to open key file for writing\n");
     }
 
+    // Capture the certificate in a BIO for conversion to a string
+    mem_bio = BIO_new(BIO_s_mem());
+    if (PEM_write_bio_X509(mem_bio, x509)) {
+        BUF_MEM *bptr;
+        BIO_get_mem_ptr(mem_bio, &bptr);
+        cert_str = strndup(bptr->data, bptr->length);
+    } else {
+        fprintf(stderr, "Failed to write certificate to BIO\n");
+    }
+
     cleanup:
     if (x509) X509_free(x509);
     if (pkey) EVP_PKEY_free(pkey);
-    if (rsa) RSA_free(rsa);
-    if (bn) BN_free(bn);
+    if (pkey_ctx) EVP_PKEY_CTX_free(pkey_ctx);
+    if (mem_bio) BIO_free(mem_bio);
 
     EVP_cleanup();
     ERR_free_strings();
+
+    return cert_str;
 }
 
-int main() {
+int main(void) {
     const char *json = "{\"key1\": \"value1\", \"key2\": \"value2\"}";
-    create_certificate_with_json_extension(json);
+    char *cert = create_certificate_with_json_extension(json);
+    if (cert) {
+        printf("Certificate:\n%s\n", cert);
+        free(cert); // Remember to free the allocated string
+    }
     return 0;
 }

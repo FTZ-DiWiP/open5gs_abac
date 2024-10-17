@@ -1,22 +1,10 @@
 libabac_sources = files('''
     context.c
-    event.c
 
 
     pip-build.c
     pip-handler.c
 
-    prp-build.c
-    prp-handler.c
-
-    nudm-build.c
-    nudm-handler.c
-    ue-sm.c
-
-    sbi-path.c
-    abac-sm.c
-
-    init.c
 '''.split())
 
 libabac = static_library('abac',

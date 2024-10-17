@@ -530,7 +530,7 @@ bool udm_nudm_uecm_handle_smf_registration(
     ogs_assert(message);
 
     ogs_assert(sess);
-    udm_ue = sess->udm_ue;
+    udm_ue = udm_ue_find_by_id(sess->udm_ue_id);
     ogs_assert(udm_ue);
 
     SmfRegistration = message->SmfRegistration;
@@ -604,7 +604,7 @@ bool udm_nudm_uecm_handle_smf_deregistration(
     ogs_assert(message);
 
     ogs_assert(sess);
-    udm_ue = sess->udm_ue;
+    udm_ue = udm_ue_find_by_id(sess->udm_ue_id);
     ogs_assert(udm_ue);
 
     r = udm_sess_sbi_discover_and_send(OGS_SBI_SERVICE_TYPE_NUDR_DR, NULL,
@@ -690,7 +690,8 @@ bool udm_nudm_sdm_handle_subscription_create(
         return false;
     }
 
-    if ((!SDMSubscription->monitored_resource_uris) &&
+    /* Clang scan-build SA: NULL pointer dereference: change && to || in case monitored_resource_uris=NULL. */
+    if ((!SDMSubscription->monitored_resource_uris) ||
         (!SDMSubscription->monitored_resource_uris->count)) {
         ogs_error("[%s] No monitoredResourceUris", udm_ue->supi);
         ogs_assert(true ==

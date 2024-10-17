@@ -47,8 +47,8 @@ char* create_certificate_with_json_extension(const char *json) {
 
     X509_NAME *name = X509_get_subject_name(x509);
     X509_NAME_add_entry_by_txt(name, "C", MBSTRING_ASC, (unsigned char *)"DE", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC, (unsigned char *)"My Company", -1, -1, 0);
-    X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"example.com", -1, -1, 0);
+    X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC, (unsigned char *)"HAW Hamburg", -1, -1, 0);
+    X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC, (unsigned char *)"haw-hamburg.de", -1, -1, 0);
     X509_set_issuer_name(x509, name);
 
     // Add custom JSON extension
@@ -110,11 +110,59 @@ char* create_certificate_with_json_extension(const char *json) {
     return cert_str;
 }
 
+// Function prototype
+char* extract_json_from_certificate(const char *cert_str);
+
+char* extract_json_from_certificate(const char *cert_str) {
+    BIO *mem_bio = BIO_new_mem_buf(cert_str, -1);
+    if (!mem_bio) {
+        fprintf(stderr, "Failed to create BIO for certificate\n");
+        return NULL;
+    }
+
+    X509 *x509 = PEM_read_bio_X509(mem_bio, NULL, NULL, NULL);
+    if (!x509) {
+        fprintf(stderr, "Failed to parse X.509 certificate\n");
+        BIO_free(mem_bio);
+        return NULL;
+    }
+
+    char *json_data = NULL;
+    int ext_count = X509_get_ext_count(x509);
+    int i; // Declare the loop variable outside
+    for (i = 0; i < ext_count; i++) {
+        X509_EXTENSION *ext = X509_get_ext(x509, i);
+        ASN1_OBJECT *obj = X509_EXTENSION_get_object(ext);
+
+        // Check if the extension is the one with our JSON data
+        if (OBJ_obj2nid(obj) == NID_netscape_comment) { // Assuming netscape_comment was used
+            ASN1_OCTET_STRING *data = X509_EXTENSION_get_data(ext);
+            if (data) {
+                json_data = strndup((char *)data->data, data->length);
+                break;
+            }
+        }
+    }
+
+    X509_free(x509);
+    BIO_free(mem_bio);
+
+    if (!json_data) {
+        fprintf(stderr, "JSON data not found in certificate\n");
+    }
+    return json_data;
+}
+
 int main(void) {
-    const char *json = "{\"key1\": \"value1\", \"key2\": \"value2\"}";
+    const char *json = "{\"name\": \"Sascha\", \"surname\": \"Kaven\", \"office\": \"Co.08\"}";
     char *cert = create_certificate_with_json_extension(json);
     if (cert) {
         printf("Certificate:\n%s\n", cert);
+        char *json_2 = extract_json_from_certificate(cert);
+        if (json_2) {
+            printf("Extracted JSON:\n%s\n", json_2);
+            free(json_2); // Free the allocated memory
+        }
         free(cert); // Remember to free the allocated string
     }
     return 0;

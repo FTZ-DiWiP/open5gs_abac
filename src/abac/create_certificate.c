@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
@@ -13,13 +14,14 @@
 // Function prototype
 char* create_certificate_with_json_extension(const char *json);
 char* extract_json_from_certificate(const char *cert_str);
+char* read_json_from_file(const char *filename);
 
 char* create_certificate_with_json_extension(const char *json) {
     EVP_PKEY *pkey = NULL;
     X509 *x509 = NULL;
     char *cert_str = NULL;
     BIO *mem_bio = NULL;
-    
+
     const char *cert_file_path = "../../../configs/open5gs/tls/abac_certificate.pem";
 
     // Initialize OpenSSL
@@ -116,6 +118,35 @@ char* create_certificate_with_json_extension(const char *json) {
     return cert_str;
 }
 
+char* read_json_from_file(const char *filename) {
+    char str[80];
+    strcpy(str, "../../../src/abac/");
+    FILE *file = fopen(strcat(str, filename) , "r");
+    if (!file) {
+        perror("Failed to open file");
+        return NULL;
+    }
+
+    // Determine the file size and allocate buffer accordingly
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    char *json_data = (char *)malloc(file_size + 1);
+    if (!json_data) {
+        perror("Failed to allocate memory");
+        fclose(file);
+        return NULL;
+    }
+
+    // Read the file contents into the buffer
+    fread(json_data, 1, file_size, file);
+    json_data[file_size] = '\0'; // Null-terminate the string
+
+    fclose(file);
+    return json_data;
+}
+
 char* extract_json_from_certificate(const char *cert_str) {
     BIO *mem_bio = BIO_new_mem_buf(cert_str, -1);
     if (!mem_bio) {
@@ -157,16 +188,20 @@ char* extract_json_from_certificate(const char *cert_str) {
 }
 
 int main(void) {
-    const char *json_raum = "{\"Mitarbeiter\": \"Sascha\", \"Schulung\": \"2 17.10.2024\", \"Gesundheitsstatus\": \"17.10.2024\", \"Druckdifferenz\": \"50 kPa\", \"Uhrzeit\": \"11:15:00\", \"Staubkonzentration\": \"0.00005 kg/m^3\", \"Wartungsarbeit\": \"Einsatzbereit\"}";
-    char *cert = create_certificate_with_json_extension(json_raum);
+    char *json_data = read_json_from_file("attributes.json");
+    if (!json_data) {
+        return 1; // Exit if reading fails
+    }
+    char *cert = create_certificate_with_json_extension(json_data);
     if (cert) {
         printf("Certificate:\n%s\n", cert);
         char *json_2 = extract_json_from_certificate(cert);
         if (json_2) {
             printf("Extracted JSON:\n%s\n", json_2);
-            free(json_2); // Free the allocated memory
+            free(json_2);
         }
-        free(cert); // Remember to free the allocated string
+        free(cert);
     }
+    free(json_data);
     return 0;
 }

@@ -3,7 +3,7 @@
 #define OPEN5GS_ABAC_CONTEXT_H
 
 #include "ogs-app.h"
-#include "ogs-dbi.h"
+//#include "ogs-dbi.h"
 #include "ogs-sbi.h"
 
 #include "abac-sm.h"

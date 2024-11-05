@@ -5,230 +5,6 @@
 bool abac_nabac_dr_handle_subscription_authentication(
         ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg)
 {
-    int rv;
-
-    ogs_sbi_message_t sendmsg;
-    ogs_sbi_response_t *response = NULL;
-    ogs_dbi_auth_info_t auth_info;
-
-    char k_string[OGS_KEYSTRLEN(OGS_KEY_LEN)];
-    char opc_string[OGS_KEYSTRLEN(OGS_KEY_LEN)];
-    char amf_string[OGS_KEYSTRLEN(OGS_AMF_LEN)];
-    char sqn_string[OGS_KEYSTRLEN(OGS_SQN_LEN)];
-
-    char sqn[OGS_SQN_LEN];
-    char *supi = NULL;
-
-    OpenAPI_authentication_subscription_t AuthenticationSubscription;
-    OpenAPI_sequence_number_t SequenceNumber;
-    OpenAPI_list_t *PatchItemList = NULL;
-    OpenAPI_lnode_t *node = NULL;
-
-    ogs_assert(stream);
-    ogs_assert(recvmsg);
-
-    supi = recvmsg->h.resource.component[1];
-    if (!supi) {
-        ogs_error("No SUPI");
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                                             recvmsg, "No SUPI", NULL, NULL));
-        return false;
-    }
-
-    if (strncmp(supi,
-                OGS_ID_SUPI_TYPE_IMSI, strlen(OGS_ID_SUPI_TYPE_IMSI)) != 0) {
-        ogs_error("[%s] Unknown SUPI Type", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream, OGS_SBI_HTTP_STATUS_FORBIDDEN,
-                                             recvmsg, "Unknwon SUPI Type", supi, NULL));
-        return false;
-    }
-
-    rv = ogs_dbi_auth_info(supi, &auth_info);
-    if (rv != OGS_OK) {
-        ogs_warn("[%s] Cannot find SUPI in DB", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream, OGS_SBI_HTTP_STATUS_NOT_FOUND,
-                                             recvmsg, "Cannot find SUPI Type", supi, NULL));
-        return false;
-    }
-
-    SWITCH(recvmsg->h.resource.component[3])
-    CASE(OGS_SBI_RESOURCE_NAME_AUTHENTICATION_SUBSCRIPTION)
-    SWITCH(recvmsg->h.method)
-    CASE(OGS_SBI_HTTP_METHOD_GET)
-    memset(&AuthenticationSubscription, 0,
-           sizeof(AuthenticationSubscription));
-
-    AuthenticationSubscription.authentication_method =
-            OpenAPI_auth_method_5G_AKA;
-
-    ogs_hex_to_ascii(auth_info.k, sizeof(auth_info.k),
-                     k_string, sizeof(k_string));
-    AuthenticationSubscription.enc_permanent_key = k_string;
-
-    ogs_hex_to_ascii(auth_info.amf, sizeof(auth_info.amf),
-                     amf_string, sizeof(amf_string));
-    AuthenticationSubscription.authentication_management_field =
-            amf_string;
-
-    if (!auth_info.use_opc)
-        milenage_opc(auth_info.k, auth_info.op, auth_info.opc);
-
-    ogs_hex_to_ascii(auth_info.opc, sizeof(auth_info.opc),
-                     opc_string, sizeof(opc_string));
-    AuthenticationSubscription.enc_opc_key = opc_string;
-
-    ogs_uint64_to_buffer(auth_info.sqn, OGS_SQN_LEN, sqn);
-    ogs_hex_to_ascii(sqn, sizeof(sqn), sqn_string, sizeof(sqn_string));
-
-    memset(&SequenceNumber, 0, sizeof(SequenceNumber));
-    SequenceNumber.sqn = sqn_string;
-    AuthenticationSubscription.sequence_number = &SequenceNumber;
-
-    memset(&sendmsg, 0, sizeof(sendmsg));
-
-    ogs_assert(AuthenticationSubscription.authentication_method);
-    sendmsg.AuthenticationSubscription =
-            &AuthenticationSubscription;
-
-    response = ogs_sbi_build_response(
-            &sendmsg, OGS_SBI_HTTP_STATUS_OK);
-    ogs_assert(response);
-    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
-
-    return true;
-
-    CASE(OGS_SBI_HTTP_METHOD_PATCH)
-    char *sqn_string = NULL;
-    uint8_t sqn_ms[OGS_SQN_LEN];
-    uint64_t sqn = 0;
-
-    PatchItemList = recvmsg->PatchItemList;
-    if (!PatchItemList) {
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream,
-                                             OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                                             recvmsg, "No PatchItemList Array", NULL, NULL));
-        return false;
-    }
-
-    OpenAPI_list_for_each(PatchItemList, node) {
-        if (node->data) {
-            OpenAPI_patch_item_t *patch_item = node->data;
-            if (OpenAPI_IsString(patch_item->value))
-                sqn_string = cJSON_GetStringValue(patch_item->value->json);
-            else
-                ogs_error("Non-string value in patch not implemented");
-        }
-    }
-
-    if (!sqn_string) {
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream,
-                                             OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                                             recvmsg, "No PatchItemList", NULL, NULL));
-        return false;
-    }
-
-    ogs_ascii_to_hex(sqn_string, strlen(sqn_string),
-                     sqn_ms, sizeof(sqn_ms));
-    sqn = ogs_buffer_to_uint64(sqn_ms, OGS_SQN_LEN);
-
-    rv = ogs_dbi_update_sqn(supi, sqn);
-    if (rv != OGS_OK) {
-        ogs_fatal("[%s] Cannot update SQN", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream,
-                                             OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR,
-                                             recvmsg, "Cannot update SQN", supi, NULL));
-        return false;
-    }
-
-    rv = ogs_dbi_increment_sqn(supi);
-    if (rv != OGS_OK) {
-        ogs_fatal("[%s] Cannot increment SQN", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream,
-                                             OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR,
-                                             recvmsg, "Cannot increment SQN", supi, NULL));
-        return false;
-    }
-
-    memset(&sendmsg, 0, sizeof(sendmsg));
-
-    response = ogs_sbi_build_response(
-            &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
-    ogs_assert(response);
-    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
-
-    return true;
-
-    DEFAULT
-    ogs_error("Invalid HTTP method [%s]", recvmsg->h.method);
-    ogs_assert(true ==
-               ogs_sbi_server_send_error(stream,
-                                         OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED,
-                                         recvmsg, "Invalid HTTP method", recvmsg->h.method,
-                                         NULL));
-    END
-    break;
-
-    CASE(OGS_SBI_RESOURCE_NAME_AUTHENTICATION_STATUS)
-    SWITCH(recvmsg->h.method)
-    CASE(OGS_SBI_HTTP_METHOD_PUT)
-    CASE(OGS_SBI_HTTP_METHOD_DELETE)
-    OpenAPI_auth_event_t *AuthEvent = NULL;
-
-    AuthEvent = recvmsg->AuthEvent;
-    if (!AuthEvent &&
-        !strcmp(recvmsg->h.method, OGS_SBI_HTTP_METHOD_PUT)) {
-        ogs_error("[%s] No AuthEvent", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(
-                           stream, OGS_SBI_HTTP_STATUS_BAD_REQUEST,
-                           recvmsg, "No AuthEvent", supi, NULL));
-        return false;
-    }
-
-    memset(&sendmsg, 0, sizeof(sendmsg));
-    rv = ogs_dbi_increment_sqn(supi);
-    if (rv != OGS_OK) {
-        ogs_fatal("[%s] Cannot increment SQN", supi);
-        ogs_assert(true ==
-                   ogs_sbi_server_send_error(stream,
-                                             OGS_SBI_HTTP_STATUS_INTERNAL_SERVER_ERROR,
-                                             recvmsg, "Cannot increment SQN", supi, NULL));
-        return false;
-    }
-
-    response = ogs_sbi_build_response(
-            &sendmsg, OGS_SBI_HTTP_STATUS_NO_CONTENT);
-    ogs_assert(response);
-    ogs_assert(true == ogs_sbi_server_send_response(stream, response));
-
-    return true;
-
-    DEFAULT
-    ogs_error("Invalid HTTP method [%s]", recvmsg->h.method);
-    ogs_assert(true ==
-               ogs_sbi_server_send_error(stream,
-                                         OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED,
-                                         recvmsg, "Invalid HTTP method", recvmsg->h.method,
-                                         NULL));
-    END
-    break;
-
-    DEFAULT
-    ogs_error("Invalid resource name [%s]",
-              recvmsg->h.resource.component[3]);
-    ogs_assert(true ==
-               ogs_sbi_server_send_error(stream,
-                                         OGS_SBI_HTTP_STATUS_METHOD_NOT_ALLOWED,
-                                         recvmsg, "Unknown resource name",
-                                         recvmsg->h.resource.component[3], NULL));
-    END
 
     return false;
 }
@@ -291,7 +67,7 @@ bool abac_nabac_dr_handle_subscription_context(
         ogs_assert(value);
 
         if (strcmp(type, "imeisv") == 0) {
-            ogs_assert(OGS_OK == ogs_dbi_update_imeisv(supi, value));
+            //ogs_assert(OGS_OK == ogs_dbi_update_imeisv(supi, value));
         } else {
             ogs_fatal("Unknown Type = %s", type);
             ogs_assert_if_reached();
@@ -404,7 +180,7 @@ bool abac_nabac_dr_handle_subscription_context(
 bool abac_nabac_dr_handle_subscription_provisioned(
         ogs_sbi_stream_t *stream, ogs_sbi_message_t *recvmsg)
 {
-    int rv, status = 0;
+    int status = 0;
     char *strerror = NULL;
 
     ogs_sbi_message_t sendmsg;
@@ -430,13 +206,6 @@ bool abac_nabac_dr_handle_subscription_provisioned(
                 OGS_ID_SUPI_TYPE_IMSI, strlen(OGS_ID_SUPI_TYPE_IMSI)) != 0) {
         strerror = ogs_msprintf("[%s] Unknown SUPI Type", supi);
         status = OGS_SBI_HTTP_STATUS_FORBIDDEN;
-        goto cleanup;
-    }
-
-    rv = ogs_dbi_subscription_data(supi, &subscription_data);
-    if (rv != OGS_OK) {
-        strerror = ogs_msprintf("[%s] Cannot find SUPI in DB", supi);
-        status = OGS_SBI_HTTP_STATUS_NOT_FOUND;
         goto cleanup;
     }
 
@@ -1076,7 +845,7 @@ bool abac_nabac_dr_handle_policy_data(
     CASE(OGS_SBI_HTTP_METHOD_GET)
     OpenAPI_lnode_t *node = NULL, *node2 = NULL;
 
-    rv = ogs_dbi_subscription_data(supi, &subscription_data);
+    //rv = ogs_dbi_subscription_data(supi, &subscription_data);
     if (rv != OGS_OK) {
         strerror = ogs_msprintf("[%s] Cannot find SUPI in DB", supi);
         status = OGS_SBI_HTTP_STATUS_NOT_FOUND;

@@ -123,18 +123,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d28c3fef-1582-481a-a83d-a1a57f1910c7" name="Changes" comment="added post-commit hooks">
-      <change afterPath="$PROJECT_DIR$/src/abac/abac-sm.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/abac-sm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/nabac-handler.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/nabac-handler.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/sbi-path.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/abac/sbi-path.h" afterDir="false" />
+    <list default="true" id="d28c3fef-1582-481a-a83d-a1a57f1910c7" name="Changes" comment="ABAC build dependency">
+      <change afterPath="$PROJECT_DIR$/src/abac/event.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/abac/event.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/abac/pdp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/abac/pdp.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app/ogs-app.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app/ogs-app.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm-charts" beforeDir="false" afterPath="$PROJECT_DIR$/helm-charts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sbi/openapi/model/nf_type.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sbi/openapi/model/nf_type.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abac/abac-sm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/abac-sm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/abac/app.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/app.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/abac/context.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/context.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/abac/context.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/context.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abac/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abac/meson.build" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/meson.build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/abac/nabac-handler.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/abac/nabac-handler.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,10 +165,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/abac/meson.build" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -194,6 +197,7 @@
       <map>
         <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
         <entry key="$PROJECT_DIR$/src/abac" value="RE_IMPORT" />
+        <entry key="$PROJECT_DIR$/src/udr" value="RE_IMPORT" />
       </map>
     </option>
   </component>
@@ -219,29 +223,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Native Application.create_certificate.executor": "Run",
-    "Native Application.open5gs-amfd.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "abac",
-    "last_opened_file_path": "C:/Users/abw369/CLionProjects/open5gs_abac",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Native Application.create_certificate.executor&quot;: &quot;Run&quot;,
+    &quot;Native Application.open5gs-amfd.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;abac&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/abw369/CLionProjects/open5gs_abac&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
     <layout>
       <window_info id="Bookmarks" show_stripe_button="false" side_tool="true" />
@@ -251,8 +255,8 @@
       <window_info id="Pull Requests" show_stripe_button="false" />
       <window_info id="Learn" show_stripe_button="false" />
       <window_info id="DFA" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20494792" />
-      <window_info id="Commit" order="1" sideWeight="0.5009191" weight="0.22578125" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23880208" />
+      <window_info active="true" id="Commit" order="1" visible="true" weight="0.5940104" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" show_stripe_button="false" />
@@ -261,14 +265,14 @@
       <window_info anchor="bottom" id="File Transfer" show_stripe_button="false" />
       <window_info anchor="bottom" id="Vcpkg" show_stripe_button="false" />
       <window_info anchor="bottom" id="clangd" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.32994187" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.15552326" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.2766473" />
       <window_info anchor="bottom" id="Services" order="4" />
       <window_info anchor="bottom" id="CMake" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.50920546" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32994187" />
+      <window_info anchor="bottom" id="Build" order="6" weight="0.32994187" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.50920546" />
       <window_info active="true" anchor="bottom" id="Messages" order="8" visible="true" weight="0.32994187" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32994187" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
@@ -281,10 +285,15 @@
       <window_info anchor="right" id="Database" order="2" weight="0.25" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
       <window_info anchor="right" id="Maven" order="4" weight="0.25" />
-      <window_info active="true" anchor="right" id="Meson" order="5" visible="true" weight="0.1419271" />
+      <window_info active="true" anchor="right" id="Meson" order="5" visible="true" weight="0.12838542" />
     </layout>
   </component>
   <component name="RunManager" selected="Native Application.app">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="310014" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="open5gs_abac" TARGET_NAME="310014" CONFIG_NAME="Default" version="1" RUN_TARGET_PROJECT_NAME="open5gs_abac" RUN_TARGET_NAME="310014">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -806,110 +815,110 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Native Application.ogscore" />
-      <item itemvalue="Native Application.ogsproto" />
-      <item itemvalue="Native Application.ogsdbi" />
-      <item itemvalue="Native Application.ogscrypt" />
-      <item itemvalue="Native Application.ogsipfw" />
-      <item itemvalue="Native Application.ogstun" />
-      <item itemvalue="Native Application.ogsapp" />
-      <item itemvalue="Native Application.prom" />
-      <item itemvalue="Native Application.ogsmetrics" />
-      <item itemvalue="Native Application.ogssctp" />
-      <item itemvalue="Native Application.fdproto" />
-      <item itemvalue="Native Application.fdcore" />
-      <item itemvalue="Native Application.dbg_msg_dumps" />
-      <item itemvalue="Native Application.dict_rfc5777" />
-      <item itemvalue="Native Application.dict_mip6i" />
-      <item itemvalue="Native Application.dict_nasreq" />
-      <item itemvalue="Native Application.dict_nas_mipv6" />
-      <item itemvalue="Native Application.dict_dcca" />
-      <item itemvalue="Native Application.dict_dcca_3gpp" />
+      <item itemvalue="Native Application.310014" />
+      <item itemvalue="Native Application.5gc" />
+      <item itemvalue="Native Application.abac" />
       <item itemvalue="Native Application.acl_wl" />
-      <item itemvalue="Native Application.rt_redirect" />
-      <item itemvalue="Native Application.rt_default" />
+      <item itemvalue="Native Application.af" />
+      <item itemvalue="Native Application.all" />
+      <item itemvalue="Native Application.amf" />
+      <item itemvalue="Native Application.app" />
+      <item itemvalue="Native Application.arp_nd" />
+      <item itemvalue="Native Application.attach" />
+      <item itemvalue="Native Application.ausf" />
+      <item itemvalue="Native Application.bsf" />
+      <item itemvalue="Native Application.core" />
+      <item itemvalue="Native Application.create_certificate" />
+      <item itemvalue="Native Application.crypt" />
+      <item itemvalue="Native Application.csfb" />
+      <item itemvalue="Native Application.dbg_msg_dumps" />
+      <item itemvalue="Native Application.dict_dcca_3gpp" />
+      <item itemvalue="Native Application.dict_dcca" />
+      <item itemvalue="Native Application.dict_mip6i" />
+      <item itemvalue="Native Application.dict_nas_mipv6" />
+      <item itemvalue="Native Application.dict_nasreq" />
+      <item itemvalue="Native Application.dict_rfc5777" />
+      <item itemvalue="Native Application.epc" />
+      <item itemvalue="Native Application.fdcore" />
+      <item itemvalue="Native Application.fdproto" />
+      <item itemvalue="Native Application.handover" />
+      <item itemvalue="Native Application.hss" />
+      <item itemvalue="Native Application.mme" />
+      <item itemvalue="Native Application.non3gpp" />
+      <item itemvalue="Native Application.nrf" />
+      <item itemvalue="Native Application.nssf" />
+      <item itemvalue="Native Application.ogsapp" />
+      <item itemvalue="Native Application.ogsasn1c-common" />
+      <item itemvalue="Native Application.ogsasn1c-ngap" />
+      <item itemvalue="Native Application.ogsasn1c-s1ap" />
+      <item itemvalue="Native Application.ogsasn1c-util" />
+      <item itemvalue="Native Application.ogscore" />
+      <item itemvalue="Native Application.ogscrypt" />
+      <item itemvalue="Native Application.ogsdbi" />
       <item itemvalue="Native Application.ogsdiameter-common" />
+      <item itemvalue="Native Application.ogsdiameter-cx" />
       <item itemvalue="Native Application.ogsdiameter-gx" />
       <item itemvalue="Native Application.ogsdiameter-gy" />
       <item itemvalue="Native Application.ogsdiameter-rx" />
       <item itemvalue="Native Application.ogsdiameter-s6a" />
-      <item itemvalue="Native Application.ogsdiameter-cx" />
-      <item itemvalue="Native Application.ogsdiameter-swx" />
       <item itemvalue="Native Application.ogsdiameter-s6b" />
-      <item itemvalue="Native Application.ogsasn1c-common" />
-      <item itemvalue="Native Application.ogsasn1c-util" />
-      <item itemvalue="Native Application.ogsasn1c-ngap" />
-      <item itemvalue="Native Application.ogsasn1c-s1ap" />
-      <item itemvalue="Native Application.ogsngap" />
-      <item itemvalue="Native Application.ogss1ap" />
-      <item itemvalue="Native Application.ogsnas-common" />
-      <item itemvalue="Native Application.ogsnas-5gs" />
-      <item itemvalue="Native Application.ogsnas-eps" />
+      <item itemvalue="Native Application.ogsdiameter-swx" />
       <item itemvalue="Native Application.ogsgtp" />
+      <item itemvalue="Native Application.ogsipfw" />
+      <item itemvalue="Native Application.ogsmetrics" />
+      <item itemvalue="Native Application.ogsnas-5gs" />
+      <item itemvalue="Native Application.ogsnas-common" />
+      <item itemvalue="Native Application.ogsnas-eps" />
+      <item itemvalue="Native Application.ogsngap" />
       <item itemvalue="Native Application.ogspfcp" />
+      <item itemvalue="Native Application.ogsproto" />
+      <item itemvalue="Native Application.ogss1ap" />
       <item itemvalue="Native Application.ogssbi-openapi" />
       <item itemvalue="Native Application.ogssbi" />
-      <item itemvalue="Native Application.mme" />
-      <item itemvalue="Native Application.open5gs-mmed" />
-      <item itemvalue="Native Application.hss" />
-      <item itemvalue="Native Application.open5gs-hssd" />
-      <item itemvalue="Native Application.sgwc" />
-      <item itemvalue="Native Application.open5gs-sgwcd" />
-      <item itemvalue="Native Application.sgwu" />
-      <item itemvalue="Native Application.open5gs-sgwud" />
-      <item itemvalue="Native Application.pcrf" />
-      <item itemvalue="Native Application.open5gs-pcrfd" />
-      <item itemvalue="Native Application.nrf" />
-      <item itemvalue="Native Application.open5gs-nrfd" />
-      <item itemvalue="Native Application.scp" />
-      <item itemvalue="Native Application.open5gs-scpd" />
-      <item itemvalue="Native Application.sepp" />
-      <item itemvalue="Native Application.open5gs-seppd" />
-      <item itemvalue="Native Application.udr" />
-      <item itemvalue="Native Application.open5gs-udrd" />
-      <item itemvalue="Native Application.udm" />
-      <item itemvalue="Native Application.open5gs-udmd" />
-      <item itemvalue="Native Application.pcf" />
-      <item itemvalue="Native Application.open5gs-pcfd" />
-      <item itemvalue="Native Application.nssf" />
-      <item itemvalue="Native Application.open5gs-nssfd" />
-      <item itemvalue="Native Application.bsf" />
-      <item itemvalue="Native Application.open5gs-bsfd" />
-      <item itemvalue="Native Application.ausf" />
-      <item itemvalue="Native Application.open5gs-ausfd" />
-      <item itemvalue="Native Application.arp_nd" />
-      <item itemvalue="Native Application.upf" />
-      <item itemvalue="Native Application.open5gs-upfd" />
-      <item itemvalue="Native Application.smf" />
-      <item itemvalue="Native Application.open5gs-smfd" />
-      <item itemvalue="Native Application.amf" />
-      <item itemvalue="Native Application.open5gs-amfd" />
-      <item itemvalue="Native Application.abac" />
+      <item itemvalue="Native Application.ogssctp" />
+      <item itemvalue="Native Application.ogstun" />
       <item itemvalue="Native Application.open5gs-abacd" />
-      <item itemvalue="Native Application.create_certificate" />
-      <item itemvalue="Native Application.core" />
-      <item itemvalue="Native Application.crypt" />
+      <item itemvalue="Native Application.open5gs-amfd" />
+      <item itemvalue="Native Application.open5gs-ausfd" />
+      <item itemvalue="Native Application.open5gs-bsfd" />
+      <item itemvalue="Native Application.open5gs-hssd" />
+      <item itemvalue="Native Application.open5gs-mmed" />
+      <item itemvalue="Native Application.open5gs-nrfd" />
+      <item itemvalue="Native Application.open5gs-nssfd" />
+      <item itemvalue="Native Application.open5gs-pcfd" />
+      <item itemvalue="Native Application.open5gs-pcrfd" />
+      <item itemvalue="Native Application.open5gs-scpd" />
+      <item itemvalue="Native Application.open5gs-seppd" />
+      <item itemvalue="Native Application.open5gs-sgwcd" />
+      <item itemvalue="Native Application.open5gs-sgwud" />
+      <item itemvalue="Native Application.open5gs-smfd" />
+      <item itemvalue="Native Application.open5gs-udmd" />
+      <item itemvalue="Native Application.open5gs-udrd" />
+      <item itemvalue="Native Application.open5gs-upfd" />
+      <item itemvalue="Native Application.pcf" />
+      <item itemvalue="Native Application.pcrf" />
+      <item itemvalue="Native Application.prom" />
+      <item itemvalue="Native Application.registration" />
+      <item itemvalue="Native Application.rt_default" />
+      <item itemvalue="Native Application.rt_redirect" />
+      <item itemvalue="Native Application.scp" />
       <item itemvalue="Native Application.sctp" />
-      <item itemvalue="Native Application.unit" />
-      <item itemvalue="Native Application.af" />
+      <item itemvalue="Native Application.sepp" />
+      <item itemvalue="Native Application.sgwc" />
+      <item itemvalue="Native Application.sgwu" />
+      <item itemvalue="Native Application.slice" />
+      <item itemvalue="Native Application.smf" />
+      <item itemvalue="Native Application.test5gc" />
+      <item itemvalue="Native Application.testapp" />
       <item itemvalue="Native Application.testcomon" />
       <item itemvalue="Native Application.testepc" />
-      <item itemvalue="Native Application.epc" />
-      <item itemvalue="Native Application.test5gc" />
-      <item itemvalue="Native Application.5gc" />
-      <item itemvalue="Native Application.testapp" />
-      <item itemvalue="Native Application.app" />
-      <item itemvalue="Native Application.registration" />
-      <item itemvalue="Native Application.vonr" />
-      <item itemvalue="Native Application.slice" />
-      <item itemvalue="Native Application.attach" />
-      <item itemvalue="Native Application.volte" />
-      <item itemvalue="Native Application.csfb" />
-      <item itemvalue="Native Application.310014" />
-      <item itemvalue="Native Application.handover" />
-      <item itemvalue="Native Application.non3gpp" />
       <item itemvalue="Native Application.transfer" />
-      <item itemvalue="Native Application.all" />
+      <item itemvalue="Native Application.udm" />
+      <item itemvalue="Native Application.udr" />
+      <item itemvalue="Native Application.unit" />
+      <item itemvalue="Native Application.upf" />
+      <item itemvalue="Native Application.volte" />
+      <item itemvalue="Native Application.vonr" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -933,6 +942,7 @@
       <workItem from="1709633475226" duration="376000" />
       <workItem from="1729165886901" duration="1157000" />
       <workItem from="1730726986510" duration="8907000" />
+      <workItem from="1730809403294" duration="8387000" />
     </task>
     <task id="LOCAL-00001" summary="Added File Saving">
       <option name="closed" value="true" />
@@ -996,7 +1006,8 @@
     <MESSAGE value="Made file path relative" />
     <MESSAGE value="Added json file parsing" />
     <MESSAGE value="added post-commit hooks" />
-    <option name="LAST_COMMIT_MESSAGE" value="added post-commit hooks" />
+    <MESSAGE value="ABAC build dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="ABAC build dependency" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

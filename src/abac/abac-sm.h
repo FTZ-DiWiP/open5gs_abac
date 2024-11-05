@@ -1,6 +1,4 @@
-//
-// Created by sascha on 04.11.24.
-//
+
 
 #ifndef OPEN5GS_ABAC_ABAC_SM_H
 #define OPEN5GS_ABAC_ABAC_SM_H
@@ -15,8 +13,8 @@ void abac_state_initial(ogs_fsm_t *s, abac_event_t *e);
 void abac_state_final(ogs_fsm_t *s, abac_event_t *e);
 void abac_state_operational(ogs_fsm_t *s, abac_event_t *e);
 
-void abac_nf_fsm_init(ogs_sbi_nf_instance_t *nf_instance);
-void abac_nf_fsm_fini(ogs_sbi_nf_instance_t *nf_instance);
+//void abac_nf_fsm_init(ogs_sbi_nf_instance_t *nf_instance);
+//void abac_nf_fsm_fini(ogs_sbi_nf_instance_t *nf_instance);
 
 void abac_nf_state_initial(ogs_fsm_t *s, abac_event_t *e);
 void abac_nf_state_final(ogs_fsm_t *s, abac_event_t *e);
